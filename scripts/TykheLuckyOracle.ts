@@ -1,8 +1,7 @@
-const { ethers, upgrades } = require('hardhat')
+const { ethers } = require('hardhat')
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import { Contract } from '@ethersproject/contracts';
 import { formatEther } from 'ethers/lib/utils';
-const { getImplementationAddress } = require('@openzeppelin/upgrades-core')
 const colors = require('colors/safe');
 import test_util from '../scripts/util'
 async function main(): Promise<void> {
@@ -12,7 +11,6 @@ async function main(): Promise<void> {
   let alice: SignerWithAddress;
 
   let tykheLuckyOracle: Contract;
-  let tykheLuckyOracleIpml: string;
 
 
   console.log("");
@@ -45,24 +43,18 @@ async function main(): Promise<void> {
     console.log();
 
     let contractName = 'TykheLuckyOracle'
-    const args = [
-      "0x7a1BaC17Ccc5b313516C5E16fb24f7659aA5ebed",
-      "0x326C977E6efc84E512bB9C30f76E30c160eD06FB",
-      "0x4b09e658ed251bcafeebbc69400383d49f344ace09b9576fe248bb02c003fe9f",
-    ];
     let contractFactory = await ethers.getContractFactory(contractName)
-    tykheLuckyOracle = await upgrades.deployProxy(contractFactory, args)
+    tykheLuckyOracle = await contractFactory.deploy()
     await tykheLuckyOracle.deployed()
-    tykheLuckyOracleIpml = await getImplementationAddress(
-      ethers.provider,
-      tykheLuckyOracle.address
-    )
 
-    console.log(`${colors.cyan(contractName + 'ProxyAddress: ')} ${colors.yellow(tykheLuckyOracle.address)}`)
-    console.log(`${colors.cyan(contractName + 'ImplAddress: ')} ${colors.yellow(tykheLuckyOracleIpml)}`)
+
+    console.log(`${colors.cyan(contractName + ' Address: ')} ${colors.yellow(tykheLuckyOracle.address)}`)
     console.log("");
+
     if (verify) {
-      await test_util.verifyWithotDeploy(contractName, tykheLuckyOracle);
+      await test_util.updateABI(contractName)
+      console.log('\nVerifing... ' + tykheLuckyOracle.address)
+      await test_util.verify(tykheLuckyOracle.address)
     }
   }
 }

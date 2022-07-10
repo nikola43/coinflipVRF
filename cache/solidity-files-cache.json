@@ -169,8 +169,8 @@
       ]
     },
     "/home/persefone/dev/coinflipVRF/contracts/CoinFlip.sol": {
-      "lastModificationDate": 1657412856981,
-      "contentHash": "e29a743a2ebe29b11a071720cf6652ed",
+      "lastModificationDate": 1657416485956,
+      "contentHash": "cbc558903a0b9d45c0bff1b5163bbc79",
       "sourceName": "contracts/CoinFlip.sol",
       "solcConfig": {
         "version": "0.8.15",
@@ -208,7 +208,7 @@
       ]
     },
     "/home/persefone/dev/coinflipVRF/node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
-      "lastModificationDate": 1657413242678,
+      "lastModificationDate": 1657414634024,
       "contentHash": "b98e2f3a856e6e7f2106fb919bacab9e",
       "sourceName": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
       "solcConfig": {
@@ -282,7 +282,7 @@
       ]
     },
     "/home/persefone/dev/coinflipVRF/node_modules/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol": {
-      "lastModificationDate": 1657413240403,
+      "lastModificationDate": 1657414632108,
       "contentHash": "d42e87f4fba2b03ab4d3c14cb53d0c51",
       "sourceName": "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
       "solcConfig": {
@@ -318,8 +318,8 @@
       ]
     },
     "/home/persefone/dev/coinflipVRF/contracts/TykheLuckyOracle.sol": {
-      "lastModificationDate": 1657412811290,
-      "contentHash": "77222f9074f39a17b18f7f1592e1e856",
+      "lastModificationDate": 1657418408969,
+      "contentHash": "05f0eceac089d8212dcf741d4d7ea17d",
       "sourceName": "contracts/TykheLuckyOracle.sol",
       "solcConfig": {
         "version": "0.8.15",
@@ -346,7 +346,6 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
         "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol",
         "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol",
         "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol"
@@ -359,7 +358,7 @@
       ]
     },
     "/home/persefone/dev/coinflipVRF/node_modules/@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol": {
-      "lastModificationDate": 1657413243906,
+      "lastModificationDate": 1657414634852,
       "contentHash": "da5a0c3bd86c896f6a407f909c57edf3",
       "sourceName": "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol",
       "solcConfig": {
@@ -395,7 +394,7 @@
       ]
     },
     "/home/persefone/dev/coinflipVRF/node_modules/@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol": {
-      "lastModificationDate": 1657413243910,
+      "lastModificationDate": 1657414634852,
       "contentHash": "56ec852a2aeddf81bf5a5720a7fc6a63",
       "sourceName": "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol",
       "solcConfig": {
@@ -431,7 +430,7 @@
       ]
     },
     "/home/persefone/dev/coinflipVRF/node_modules/@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol": {
-      "lastModificationDate": 1657413242506,
+      "lastModificationDate": 1657414633852,
       "contentHash": "eb9cc526ef59dfc4d644f56ddca0633a",
       "sourceName": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol",
       "solcConfig": {

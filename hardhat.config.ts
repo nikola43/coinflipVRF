@@ -186,8 +186,8 @@ const config: HardhatUserConfig = {
       accounts: [`${mnemonic}`],
       chainId: 56,
     },
-    bsctestnet: {
-      url: 'https://data-seed-prebsc-2-s3.binance.org:8545',
+    bscTestnet: {
+      url: 'https://speedy-nodes-nyc.moralis.io/aaf5f27c6c7a9ad182a69ccd/bsc/testnet',
       accounts: [
         `${mnemonic}`,
         mnemonicBob,
@@ -251,8 +251,15 @@ const config: HardhatUserConfig = {
     }
   },
   etherscan: {
-    //apiKey: 'ZGR21YGDGQSIVXI5B2NR5K73MFCDI4QPH8'
-    apiKey: "UMKZDMNWZE1PTPD4JVUUUXN7WGNR1FWZJW"
+
+    apiKey: {
+
+
+      bsc: "V28HJCGUP2XCHSV5IXXG6IK9W14HHXKDCY", // bsc
+      bscTestnet: "V28HJCGUP2XCHSV5IXXG6IK9W14HHXKDCY", // bsc
+
+  
+    }
   },
   solidity: {
     compilers: [

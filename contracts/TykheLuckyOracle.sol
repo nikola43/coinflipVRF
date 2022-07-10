@@ -1,95 +1,57 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.15;
 
-import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 
-contract TykheLuckyOracle is Initializable {
+/**
+ *  An example of a consumer contract that also owns and manages the subscription
+ *  @notice code not audited and contains hardcoded values. Not to be used in production!
+ *
+ *. @notice works as-is on Avalanche Fuji testnet. Please replace hardcoded values if you run it on another testnet
+ **/
+contract TykheLuckyOracle is VRFConsumerBaseV2 {
     VRFCoordinatorV2Interface COORDINATOR;
     LinkTokenInterface LINKTOKEN;
 
     // Avalanche Fuji coordinator. For other networks,
     // see https://docs.chain.link/docs/vrf-contracts/#configurations
-    address vrfCoordinator;
+    address vrfCoordinator = 0x6A2AAd07396B36Fe02a22b33cf443582f682c82f;
 
     // Avalanche Fuji LINK token contract. For other networks, see
     // https://docs.chain.link/docs/vrf-contracts/#configurations
-    address link_token_contract;
+    address link_token_contract = 0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06;
 
     // The gas lane to use, which specifies the maximum gas price to bump to.
     // For a list of available gas lanes on each network,
     // see https://docs.chain.link/docs/vrf-contracts/#configurations
-    bytes32 keyHash;
+    bytes32 keyHash =
+        0xd4bb89654db74673a187bd804519e65e3f71a52bc55f11da7601a13dcf505314;
 
     // A reasonable default is 100000, but this value could be different
     // on other networks.
-    uint32 callbackGasLimit;
+    uint32 callbackGasLimit = 100000;
 
     // The default is 1, but you can set this higher.
-    uint16 requestConfirmations;
+    uint16 requestConfirmations = 1;
 
     // For this example, retrieve 2 random values in one request.
     // Cannot exceed VRFCoordinatorV2.MAX_NUM_WORDS.
-    uint32 numWords;
-
-    address private _owner;
+    uint32 numWords = 2;
 
     // Storage parameters
     uint256[] public s_randomWords;
     uint256 public s_requestId;
     uint64 public s_subscriptionId;
+    address s_owner;
 
-    VRFConsumerBaseV2 selfVRFConsumerBaseV2;
-
-    // Modifier to verify the caller is the owner of the contract
-    modifier onlyOwner() {
-        require(msg.sender == _owner);
-        _;
-    }
-
-    event OwnershipTransferred(
-        address indexed previousOwner,
-        address indexed newOwner
-    );
-
-    /// @custom:oz-upgrades-unsafe-allow constructor
-
-    function initialize(
-        address _vrfCoordinator,
-        address _link_token_contract,
-        bytes32 _keyHash
-    ) public initializer {
-        _owner = msg.sender;
-        numWords = 1;
-        requestConfirmations = 1;
-        callbackGasLimit = 100000;
-
-        vrfCoordinator = _vrfCoordinator;
-        link_token_contract = _link_token_contract;
-        keyHash = _keyHash;
-
+    constructor() VRFConsumerBaseV2(vrfCoordinator) {
         COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
         LINKTOKEN = LinkTokenInterface(link_token_contract);
-        selfVRFConsumerBaseV2 = VRFConsumerBaseV2(vrfCoordinator);
-
+        s_owner = msg.sender;
         //Create a new subscription when you deploy the contract.
-        //createNewSubscription();
-    }
-
-    /**
-     * @dev Transfers ownership of the contract to a new account ('newOwner').
-     * Can only be called by the current owner.
-     */
-    function transferOwnership(address newOwner) public virtual onlyOwner {
-        require(
-            newOwner != address(0),
-            "Ownable: new owner is the zero address"
-        );
-        address oldOwner = _owner;
-        _owner = newOwner;
-        emit OwnershipTransferred(oldOwner, newOwner);
+        createNewSubscription();
     }
 
     // Assumes the subscription is funded sufficiently.
@@ -104,17 +66,32 @@ contract TykheLuckyOracle is Initializable {
         );
     }
 
+    // Assumes this contract owns link
+    // This method functions similarly to VRFv1, but you must estimate LINK costs
+    // yourself based on the gas lane and limits.
+    // 1000000000000000000 = 1 LINK
+    function fundAndRequestRandomWords(uint256 amount) external onlyOwner {
+        LINKTOKEN.transferAndCall(
+            address(COORDINATOR),
+            amount,
+            abi.encode(s_subscriptionId)
+        );
+        // Will revert if subscription is not set and funded.
+        s_requestId = COORDINATOR.requestRandomWords(
+            keyHash,
+            s_subscriptionId,
+            requestConfirmations,
+            callbackGasLimit,
+            numWords
+        );
+    }
+
     // Callback function to receive the random values
     function fulfillRandomWords(
         uint256, /* requestId */
         uint256[] memory randomWords
-    ) internal {
+    ) internal override {
         s_randomWords = randomWords;
-    }
-
-    // get the details of the subscription
-    function askOracle() external view returns (uint256[] memory) {
-        return s_randomWords;
     }
 
     // Create a new subscription
@@ -192,5 +169,15 @@ contract TykheLuckyOracle is Initializable {
     // Link balance of the contract
     function getLinkBalance() external view returns (uint256 balance) {
         return LINKTOKEN.balanceOf(address(this));
+    }
+
+    // Modifier to verify the caller is the owner of the contract
+    modifier onlyOwner() {
+        require(msg.sender == s_owner);
+        _;
+    }
+
+    function askOracle() external view returns (uint256[] memory) {
+        return s_randomWords;
     }
 }

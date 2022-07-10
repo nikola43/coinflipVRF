@@ -1,6 +1,6 @@
 import { ethers, upgrades } from 'hardhat'
 const colors = require('colors');
-const test_util = require('./util');
+const test_util = require('../scripts/util');
 import { Contract } from 'ethers';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import { getImplementationAddress } from '@openzeppelin/upgrades-core'
@@ -13,8 +13,6 @@ describe("TykheLuckyOracle", async () => {
     let alice: SignerWithAddress;
     let tykheLuckyOracle: Contract;
     let tykheLuckyOracleIpml: string;
-
-
 
     it("1.1 - Get Signer", async () => {
         console.log("");
@@ -55,7 +53,7 @@ describe("TykheLuckyOracle", async () => {
     });
 
     it("1.3 - Transfer Link Tokens to contract", async () => {
-        const linkToken = await test_util.connectBUSD()
+        const linkToken = await test_util.connectLINK()
 
         await linkToken.connect(deployer).transfer(tykheLuckyOracle?.address, parseEther("1"))
     })

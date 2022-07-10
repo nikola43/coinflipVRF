@@ -506,5 +506,6 @@ export default module.exports = {
     swapExactTokensForTokensSupportingFeeOnTransferTokens,
     verifyWithotDeploy,
     verify,
-    connectLINK
+    connectLINK,
+    updateABI
 }
