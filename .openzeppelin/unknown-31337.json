@@ -1,0 +1,195 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+    "txHash": "0xd9cb9dc3c87dbb315d1d7089c15ad0d803fd4d665edc025a3ce86bbf63234aea"
+  },
+  "proxies": [
+    {
+      "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+      "txHash": "0x6ee8d976523dec1429bb917681eced8c02df2f9e3572d304fedd68ec3fdb366e",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "368477c71d1d34f752e611041b223c4d51b403cd3c1895c2d561f755e7bb7a9b": {
+      "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "txHash": "0x519f3d097f3773d4c1230e01c110161ed6bfa8879e257cb99c3bad35e5eec928",
+      "layout": {
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "COORDINATOR",
+            "offset": 2,
+            "slot": "0",
+            "type": "t_contract(VRFCoordinatorV2Interface)241",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:10"
+          },
+          {
+            "label": "LINKTOKEN",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_contract(LinkTokenInterface)152",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:11"
+          },
+          {
+            "label": "vrfCoordinator",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_address",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:15"
+          },
+          {
+            "label": "link_token_contract",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_address",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:19"
+          },
+          {
+            "label": "keyHash",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_bytes32",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:24"
+          },
+          {
+            "label": "callbackGasLimit",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint32",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:28"
+          },
+          {
+            "label": "requestConfirmations",
+            "offset": 4,
+            "slot": "5",
+            "type": "t_uint16",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:31"
+          },
+          {
+            "label": "numWords",
+            "offset": 6,
+            "slot": "5",
+            "type": "t_uint32",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:35"
+          },
+          {
+            "label": "_owner",
+            "offset": 10,
+            "slot": "5",
+            "type": "t_address",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:37"
+          },
+          {
+            "label": "s_randomWords",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:40"
+          },
+          {
+            "label": "s_requestId",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_uint256",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:41"
+          },
+          {
+            "label": "s_subscriptionId",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_uint64",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:42"
+          },
+          {
+            "label": "selfVRFConsumerBaseV2",
+            "offset": 8,
+            "slot": "8",
+            "type": "t_contract(VRFConsumerBaseV2)57",
+            "contract": "TykheLuckyOracle",
+            "src": "contracts/TykheLuckyOracle.sol:44"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_contract(LinkTokenInterface)152": {
+            "label": "contract LinkTokenInterface",
+            "numberOfBytes": "20"
+          },
+          "t_contract(VRFConsumerBaseV2)57": {
+            "label": "contract VRFConsumerBaseV2",
+            "numberOfBytes": "20"
+          },
+          "t_contract(VRFCoordinatorV2Interface)241": {
+            "label": "contract VRFCoordinatorV2Interface",
+            "numberOfBytes": "20"
+          },
+          "t_uint16": {
+            "label": "uint16",
+            "numberOfBytes": "2"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint32": {
+            "label": "uint32",
+            "numberOfBytes": "4"
+          },
+          "t_uint64": {
+            "label": "uint64",
+            "numberOfBytes": "8"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    }
+  }
+}
