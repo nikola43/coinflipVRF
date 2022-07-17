@@ -3,63 +3,78 @@ const colors = require('colors');
 import { Contract } from 'ethers';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import { getImplementationAddress } from '@openzeppelin/upgrades-core'
-import { parseEther, formatEther } from 'ethers/lib/utils';
 import { expect } from 'chai';
-const os = require('os')
-const util = require('./util');
-
-describe("MetaStocks Testing", async () => {
-
-    let tykheLuckyOracle: Contract;
-    let tykheLuckyOracleIpml: string;
+describe("TykheLuckyOracle", async () => {
 
     let deployer: SignerWithAddress;
     let bob: SignerWithAddress;
     let alice: SignerWithAddress;
+    let coinFlip: Contract;
+    let coinFlipIpml: string;
+    let tykheLuckyOracle: Contract;
+    let tykheLuckyOracleIpml: string;
 
-
-
-
-    describe("1 - Deploy MetaStock Contracts", async () => {
-
-        it("1.1 - Get Signer", async () => {
-            console.log("");
-            const signers = await ethers.getSigners();
-            if (signers[0] !== undefined) {
-                deployer = signers[0];
-                console.log(`${colors.cyan('Deployer Address')}: ${colors.yellow(deployer?.address)}`)
-            }
-            if (signers[1] !== undefined) {
-                bob = signers[1];
-                console.log(`${colors.cyan('Bob Address')}: ${colors.yellow(bob?.address)}`)
-            }
-            if (signers[2] !== undefined) {
-                alice = signers[2];
-                console.log(`${colors.cyan('Alice Address')}: ${colors.yellow(alice?.address)}`)
-            }
-            console.log("");
-        });
-
-        it("1.1 - Get Signer", async () => {
-
-            let contractName = 'TykheLuckyOracle'
-            const args = [
-                "0x7a1BaC17Ccc5b313516C5E16fb24f7659aA5ebed",
-                "0x326C977E6efc84E512bB9C30f76E30c160eD06FB",
-                "0x4b09e658ed251bcafeebbc69400383d49f344ace09b9576fe248bb02c003fe9f",
-            ];
-            let contractFactory = await ethers.getContractFactory(contractName)
-            tykheLuckyOracle = await upgrades.deployProxy(contractFactory, args)
-            await tykheLuckyOracle.deployed()
-            tykheLuckyOracleIpml = await getImplementationAddress(
-                ethers.provider,
-                tykheLuckyOracle.address
-            )
-
-            console.log(`${colors.cyan(contractName + 'ProxyAddress: ')} ${colors.yellow(tykheLuckyOracle.address)}`)
-            console.log(`${colors.cyan(contractName + 'ImplAddress: ')} ${colors.yellow(tykheLuckyOracleIpml)}`)
-            console.log("");
-        });
-
+    it("1.1 - Get Signer", async () => {
+        console.log("");
+        const signers = await ethers.getSigners();
+        if (signers[0] !== undefined) {
+            deployer = signers[0];
+            console.log(`${colors.cyan('Deployer Address')}: ${colors.yellow(deployer?.address)}`)
+        }
+        if (signers[1] !== undefined) {
+            bob = signers[1];
+            console.log(`${colors.cyan('Bob Address')}: ${colors.yellow(bob?.address)}`)
+        }
+        if (signers[2] !== undefined) {
+            alice = signers[2];
+            console.log(`${colors.cyan('Alice Address')}: ${colors.yellow(alice?.address)}`)
+        }
+        console.log("");
     });
+
+
+    it("1.2 - TykheLuckyOracle", async () => {
+        let contractName = 'TykheLuckyOracle'
+        const args = [
+            "0x6A2AAd07396B36Fe02a22b33cf443582f682c82f",
+            "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06",
+            "0xd4bb89654db74673a187bd804519e65e3f71a52bc55f11da7601a13dcf505314",
+        ];
+        let contractFactory = await ethers.getContractFactory(contractName)
+        tykheLuckyOracle = await upgrades.deployProxy(contractFactory, args)
+        await tykheLuckyOracle.deployed()
+        tykheLuckyOracleIpml = await getImplementationAddress(
+            ethers.provider,
+            tykheLuckyOracle.address
+        )
+
+        console.log(`${colors.cyan(contractName + 'ProxyAddress: ')} ${colors.yellow(tykheLuckyOracle.address)}`)
+        console.log(`${colors.cyan(contractName + 'ImplAddress: ')} ${colors.yellow(tykheLuckyOracleIpml)}`)
+        console.log("");
+    });
+
+
+    
+    it("1.3 - CoinFlip", async () => {
+        let contractName = 'CoinFlip'
+        const args = [
+            tykheLuckyOracle.address
+        ];
+        let contractFactory = await ethers.getContractFactory(contractName)
+        coinFlip = await upgrades.deployProxy(contractFactory, args)
+        await coinFlip.deployed()
+        coinFlipIpml = await getImplementationAddress(
+            ethers.provider,
+            coinFlip.address
+        )
+
+        console.log(`${colors.cyan(contractName + 'ProxyAddress: ')} ${colors.yellow(coinFlip.address)}`)
+        console.log(`${colors.cyan(contractName + 'ImplAddress: ')} ${colors.yellow(coinFlipIpml)}`)
+        console.log("");
+    });
+    
+
+    it("1.3 - Transfer Link Tokens to contract", async () => {
+        expect(1).to.be.eq(1);
+    })
 });

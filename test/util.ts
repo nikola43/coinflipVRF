@@ -20,7 +20,6 @@ export const chains: Record<string, Record<string, any>> = {
         router: '0x2D99ABD9008Dc933ff5c0CD271B88309593aB921',
         factory: '0xE4A575550C2b460d2307b82dCd7aFe84AD1484dd',
         wChainCoin: '0xd00ae08403B9bbb9124bB305C09058E32C39A48c',
-        LINK: "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06",
         methods: {
             addLiquidity: 'addLiquidityAVAX',
         }
@@ -32,7 +31,6 @@ export const chains: Record<string, Record<string, any>> = {
         wChainCoin: "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",
         BUSD: "0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7",
         whaleBUSD: "0x352a7a5277ec7619500b06fa051974621c1acd12",
-        LINK: "",
         methods: {
             addLiquidity: 'addLiquidity',
             addLiquidityETH: 'addLiquidityETH',
@@ -54,13 +52,6 @@ export function getFactoryName(dex: string) {
 
 export async function getProxyImplementation(proxyAddress: string): Promise<string> {
     return await getImplementationAddress(provider, proxyAddress)
-}
-
-export async function connectLINK(): Promise<Contract> {
-    //wtf is this not working -> Forgot to await on test bruh
-    return await ethers.getContractAt(
-        'BEP20Token',
-        chains[default_chain]?.LINK)
 }
 
 const verifyWithotDeploy = async (
@@ -506,6 +497,5 @@ export default module.exports = {
     swapExactTokensForTokensSupportingFeeOnTransferTokens,
     verifyWithotDeploy,
     verify,
-    connectLINK,
     updateABI
 }

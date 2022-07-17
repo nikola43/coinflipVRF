@@ -2,6 +2,1798 @@
   "version": "3.2",
   "log": [
     {
+      "Initializable": {
+        "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:57",
+        "inherit": [],
+        "libraries": [
+          "AddressUpgradeable"
+        ],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_initialized",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+              "retypedFrom": "bool"
+            },
+            {
+              "label": "_initializing",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      },
+      "AddressUpgradeable": {
+        "src": "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol:9",
+        "version": {
+          "withMetadata": "f500cce3554e76278de047319956321e0896d5bc4a40f304d8d928144146a14d",
+          "withoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db",
+          "linkedWithoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "CoinFlip": {
+        "src": "contracts/CoinFlip.sol:14",
+        "version": {
+          "withMetadata": "8a5e453777cfbc92f25c5b31f5e8b5455fd640604c2b8c3ac12e9d40ffb1b5b6",
+          "withoutMetadata": "0a8005c527a9dfbcbe670dff6cc4d1f6337152b7eca01657abb5427172a2a252",
+          "linkedWithoutMetadata": "0a8005c527a9dfbcbe670dff6cc4d1f6337152b7eca01657abb5427172a2a252"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address)",
+          "getFlipPrice()",
+          "getFlipResult()",
+          "flipCoin()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_initialized",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+              "retypedFrom": "bool"
+            },
+            {
+              "label": "_initializing",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+            },
+            {
+              "label": "_owner",
+              "offset": 2,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:15"
+            },
+            {
+              "label": "flipPrice",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_uint256",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:16"
+            },
+            {
+              "label": "usersFlips",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_address,t_struct(Flip)406_storage)",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:17"
+            },
+            {
+              "label": "usersFlipsCounter",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_uint256",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:18"
+            },
+            {
+              "label": "tykheLuckyOracle",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_contract(ITykheLuckyOracle)527",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:19"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_contract(ITykheLuckyOracle)527": {
+              "label": "contract ITykheLuckyOracle",
+              "numberOfBytes": "20"
+            },
+            "t_mapping(t_address,t_struct(Flip)406_storage)": {
+              "label": "mapping(address => struct Flip)",
+              "numberOfBytes": "32"
+            },
+            "t_struct(Flip)406_storage": {
+              "label": "struct Flip",
+              "members": [
+                {
+                  "label": "user",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "timestamp",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "flipNumber",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "flipResult",
+                  "type": "t_bool",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      },
+      "ITykheLuckyOracle": {
+        "src": "contracts/ITykheLuckyOracle.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "askOracle()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      }
+    },
+    {
+      "VRFConsumerBaseV2": {
+        "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:97",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "rawFulfillRandomWords(uint256,uint256[])"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "VRFConsumerBaseV2",
+            "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:104"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "vrfCoordinator",
+            "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:99"
+          }
+        ],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "LinkTokenInterface": {
+        "src": "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "balanceOf(address)",
+          "decimals()",
+          "decreaseApproval(address,uint256)",
+          "increaseApproval(address,uint256)",
+          "name()",
+          "symbol()",
+          "totalSupply()",
+          "transfer(address,uint256)",
+          "transferAndCall(address,uint256,bytes)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "VRFCoordinatorV2Interface": {
+        "src": "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "getRequestConfig()",
+          "requestRandomWords(bytes32,uint64,uint16,uint32,uint32)",
+          "createSubscription()",
+          "getSubscription(uint64)",
+          "requestSubscriptionOwnerTransfer(uint64,address)",
+          "acceptSubscriptionOwnerTransfer(uint64)",
+          "addConsumer(uint64,address)",
+          "removeConsumer(uint64,address)",
+          "cancelSubscription(uint64,address)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "Initializable": {
+        "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:57",
+        "inherit": [],
+        "libraries": [
+          "AddressUpgradeable"
+        ],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_initialized",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+              "retypedFrom": "bool"
+            },
+            {
+              "label": "_initializing",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      },
+      "AddressUpgradeable": {
+        "src": "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol:9",
+        "version": {
+          "withMetadata": "f500cce3554e76278de047319956321e0896d5bc4a40f304d8d928144146a14d",
+          "withoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db",
+          "linkedWithoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "CoinFlip": {
+        "src": "contracts/CoinFlip.sol:14",
+        "version": {
+          "withMetadata": "8a5e453777cfbc92f25c5b31f5e8b5455fd640604c2b8c3ac12e9d40ffb1b5b6",
+          "withoutMetadata": "0a8005c527a9dfbcbe670dff6cc4d1f6337152b7eca01657abb5427172a2a252",
+          "linkedWithoutMetadata": "0a8005c527a9dfbcbe670dff6cc4d1f6337152b7eca01657abb5427172a2a252"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address)",
+          "getFlipPrice()",
+          "getFlipResult()",
+          "flipCoin()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_initialized",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+              "retypedFrom": "bool"
+            },
+            {
+              "label": "_initializing",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+            },
+            {
+              "label": "_owner",
+              "offset": 2,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:15"
+            },
+            {
+              "label": "flipPrice",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_uint256",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:16"
+            },
+            {
+              "label": "usersFlips",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_address,t_struct(Flip)648_storage)",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:17"
+            },
+            {
+              "label": "usersFlipsCounter",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_uint256",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:18"
+            },
+            {
+              "label": "tykheLuckyOracle",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_contract(ITykheLuckyOracle)769",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:19"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_contract(ITykheLuckyOracle)769": {
+              "label": "contract ITykheLuckyOracle",
+              "numberOfBytes": "20"
+            },
+            "t_mapping(t_address,t_struct(Flip)648_storage)": {
+              "label": "mapping(address => struct Flip)",
+              "numberOfBytes": "32"
+            },
+            "t_struct(Flip)648_storage": {
+              "label": "struct Flip",
+              "members": [
+                {
+                  "label": "user",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "timestamp",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "flipNumber",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "flipResult",
+                  "type": "t_bool",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      },
+      "ITykheLuckyOracle": {
+        "src": "contracts/ITykheLuckyOracle.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "askOracle()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "TykheLuckyOracle": {
+        "src": "contracts/TykheLuckyOracle.sol:9",
+        "version": {
+          "withMetadata": "34465b47cea016a982cd45f7f98b476aaa5f088479e5a07baed120582d1a0e66",
+          "withoutMetadata": "368477c71d1d34f752e611041b223c4d51b403cd3c1895c2d561f755e7bb7a9b",
+          "linkedWithoutMetadata": "368477c71d1d34f752e611041b223c4d51b403cd3c1895c2d561f755e7bb7a9b"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address,address,bytes32)",
+          "transferOwnership(address)",
+          "requestRandomWords()",
+          "askOracle()",
+          "createNewSubscription()",
+          "getSubscriptionDetails()",
+          "pendingRequestExists()",
+          "topUpSubscription(uint256)",
+          "addConsumer(address)",
+          "removeConsumer(address)",
+          "cancelSubscription(address)",
+          "withdraw(uint256,address)",
+          "getLinkBalance()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_initialized",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+              "retypedFrom": "bool"
+            },
+            {
+              "label": "_initializing",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+            },
+            {
+              "label": "COORDINATOR",
+              "offset": 2,
+              "slot": "0",
+              "type": "t_contract(VRFCoordinatorV2Interface)241",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:10"
+            },
+            {
+              "label": "LINKTOKEN",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_contract(LinkTokenInterface)152",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:11"
+            },
+            {
+              "label": "vrfCoordinator",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_address",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:15"
+            },
+            {
+              "label": "link_token_contract",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_address",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:19"
+            },
+            {
+              "label": "keyHash",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_bytes32",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:24"
+            },
+            {
+              "label": "callbackGasLimit",
+              "offset": 0,
+              "slot": "5",
+              "type": "t_uint32",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:28"
+            },
+            {
+              "label": "requestConfirmations",
+              "offset": 4,
+              "slot": "5",
+              "type": "t_uint16",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:31"
+            },
+            {
+              "label": "numWords",
+              "offset": 6,
+              "slot": "5",
+              "type": "t_uint32",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:35"
+            },
+            {
+              "label": "_owner",
+              "offset": 10,
+              "slot": "5",
+              "type": "t_address",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:37"
+            },
+            {
+              "label": "s_randomWords",
+              "offset": 0,
+              "slot": "6",
+              "type": "t_array(t_uint256)dyn_storage",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:40"
+            },
+            {
+              "label": "s_requestId",
+              "offset": 0,
+              "slot": "7",
+              "type": "t_uint256",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:41"
+            },
+            {
+              "label": "s_subscriptionId",
+              "offset": 0,
+              "slot": "8",
+              "type": "t_uint64",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:42"
+            },
+            {
+              "label": "selfVRFConsumerBaseV2",
+              "offset": 8,
+              "slot": "8",
+              "type": "t_contract(VRFConsumerBaseV2)57",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:44"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_uint256)dyn_storage": {
+              "label": "uint256[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_contract(LinkTokenInterface)152": {
+              "label": "contract LinkTokenInterface",
+              "numberOfBytes": "20"
+            },
+            "t_contract(VRFConsumerBaseV2)57": {
+              "label": "contract VRFConsumerBaseV2",
+              "numberOfBytes": "20"
+            },
+            "t_contract(VRFCoordinatorV2Interface)241": {
+              "label": "contract VRFCoordinatorV2Interface",
+              "numberOfBytes": "20"
+            },
+            "t_uint16": {
+              "label": "uint16",
+              "numberOfBytes": "2"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "t_uint32": {
+              "label": "uint32",
+              "numberOfBytes": "4"
+            },
+            "t_uint64": {
+              "label": "uint64",
+              "numberOfBytes": "8"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      }
+    },
+    {
+      "VRFConsumerBaseV2": {
+        "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:97",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "rawFulfillRandomWords(uint256,uint256[])"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "VRFConsumerBaseV2",
+            "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:104"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "vrfCoordinator",
+            "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:99"
+          }
+        ],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "LinkTokenInterface": {
+        "src": "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "balanceOf(address)",
+          "decimals()",
+          "decreaseApproval(address,uint256)",
+          "increaseApproval(address,uint256)",
+          "name()",
+          "symbol()",
+          "totalSupply()",
+          "transfer(address,uint256)",
+          "transferAndCall(address,uint256,bytes)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "VRFCoordinatorV2Interface": {
+        "src": "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "getRequestConfig()",
+          "requestRandomWords(bytes32,uint64,uint16,uint32,uint32)",
+          "createSubscription()",
+          "getSubscription(uint64)",
+          "requestSubscriptionOwnerTransfer(uint64,address)",
+          "acceptSubscriptionOwnerTransfer(uint64)",
+          "addConsumer(uint64,address)",
+          "removeConsumer(uint64,address)",
+          "cancelSubscription(uint64,address)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "Initializable": {
+        "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:57",
+        "inherit": [],
+        "libraries": [
+          "AddressUpgradeable"
+        ],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_initialized",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+              "retypedFrom": "bool"
+            },
+            {
+              "label": "_initializing",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      },
+      "AddressUpgradeable": {
+        "src": "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol:9",
+        "version": {
+          "withMetadata": "f500cce3554e76278de047319956321e0896d5bc4a40f304d8d928144146a14d",
+          "withoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db",
+          "linkedWithoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "TykheLuckyOracle": {
+        "src": "contracts/TykheLuckyOracle.sol:9",
+        "version": {
+          "withMetadata": "34465b47cea016a982cd45f7f98b476aaa5f088479e5a07baed120582d1a0e66",
+          "withoutMetadata": "368477c71d1d34f752e611041b223c4d51b403cd3c1895c2d561f755e7bb7a9b",
+          "linkedWithoutMetadata": "368477c71d1d34f752e611041b223c4d51b403cd3c1895c2d561f755e7bb7a9b"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address,address,bytes32)",
+          "transferOwnership(address)",
+          "requestRandomWords()",
+          "askOracle()",
+          "createNewSubscription()",
+          "getSubscriptionDetails()",
+          "pendingRequestExists()",
+          "topUpSubscription(uint256)",
+          "addConsumer(address)",
+          "removeConsumer(address)",
+          "cancelSubscription(address)",
+          "withdraw(uint256,address)",
+          "getLinkBalance()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_initialized",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+              "retypedFrom": "bool"
+            },
+            {
+              "label": "_initializing",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+            },
+            {
+              "label": "COORDINATOR",
+              "offset": 2,
+              "slot": "0",
+              "type": "t_contract(VRFCoordinatorV2Interface)241",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:10"
+            },
+            {
+              "label": "LINKTOKEN",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_contract(LinkTokenInterface)152",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:11"
+            },
+            {
+              "label": "vrfCoordinator",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_address",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:15"
+            },
+            {
+              "label": "link_token_contract",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_address",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:19"
+            },
+            {
+              "label": "keyHash",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_bytes32",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:24"
+            },
+            {
+              "label": "callbackGasLimit",
+              "offset": 0,
+              "slot": "5",
+              "type": "t_uint32",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:28"
+            },
+            {
+              "label": "requestConfirmations",
+              "offset": 4,
+              "slot": "5",
+              "type": "t_uint16",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:31"
+            },
+            {
+              "label": "numWords",
+              "offset": 6,
+              "slot": "5",
+              "type": "t_uint32",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:35"
+            },
+            {
+              "label": "_owner",
+              "offset": 10,
+              "slot": "5",
+              "type": "t_address",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:37"
+            },
+            {
+              "label": "s_randomWords",
+              "offset": 0,
+              "slot": "6",
+              "type": "t_array(t_uint256)dyn_storage",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:40"
+            },
+            {
+              "label": "s_requestId",
+              "offset": 0,
+              "slot": "7",
+              "type": "t_uint256",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:41"
+            },
+            {
+              "label": "s_subscriptionId",
+              "offset": 0,
+              "slot": "8",
+              "type": "t_uint64",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:42"
+            },
+            {
+              "label": "selfVRFConsumerBaseV2",
+              "offset": 8,
+              "slot": "8",
+              "type": "t_contract(VRFConsumerBaseV2)57",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:44"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_uint256)dyn_storage": {
+              "label": "uint256[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_contract(LinkTokenInterface)152": {
+              "label": "contract LinkTokenInterface",
+              "numberOfBytes": "20"
+            },
+            "t_contract(VRFConsumerBaseV2)57": {
+              "label": "contract VRFConsumerBaseV2",
+              "numberOfBytes": "20"
+            },
+            "t_contract(VRFCoordinatorV2Interface)241": {
+              "label": "contract VRFCoordinatorV2Interface",
+              "numberOfBytes": "20"
+            },
+            "t_uint16": {
+              "label": "uint16",
+              "numberOfBytes": "2"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "t_uint32": {
+              "label": "uint32",
+              "numberOfBytes": "4"
+            },
+            "t_uint64": {
+              "label": "uint64",
+              "numberOfBytes": "8"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      }
+    },
+    {
+      "VRFConsumerBaseV2": {
+        "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:97",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "rawFulfillRandomWords(uint256,uint256[])"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "VRFConsumerBaseV2",
+            "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:104"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "vrfCoordinator",
+            "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:99"
+          }
+        ],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "LinkTokenInterface": {
+        "src": "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "balanceOf(address)",
+          "decimals()",
+          "decreaseApproval(address,uint256)",
+          "increaseApproval(address,uint256)",
+          "name()",
+          "symbol()",
+          "totalSupply()",
+          "transfer(address,uint256)",
+          "transferAndCall(address,uint256,bytes)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "VRFCoordinatorV2Interface": {
+        "src": "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "getRequestConfig()",
+          "requestRandomWords(bytes32,uint64,uint16,uint32,uint32)",
+          "createSubscription()",
+          "getSubscription(uint64)",
+          "requestSubscriptionOwnerTransfer(uint64,address)",
+          "acceptSubscriptionOwnerTransfer(uint64)",
+          "addConsumer(uint64,address)",
+          "removeConsumer(uint64,address)",
+          "cancelSubscription(uint64,address)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "Initializable": {
+        "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:57",
+        "inherit": [],
+        "libraries": [
+          "AddressUpgradeable"
+        ],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_initialized",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+              "retypedFrom": "bool"
+            },
+            {
+              "label": "_initializing",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      },
+      "AddressUpgradeable": {
+        "src": "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol:9",
+        "version": {
+          "withMetadata": "f500cce3554e76278de047319956321e0896d5bc4a40f304d8d928144146a14d",
+          "withoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db",
+          "linkedWithoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "CoinFlip": {
+        "src": "contracts/CoinFlip.sol:14",
+        "version": {
+          "withMetadata": "8a5e453777cfbc92f25c5b31f5e8b5455fd640604c2b8c3ac12e9d40ffb1b5b6",
+          "withoutMetadata": "0a8005c527a9dfbcbe670dff6cc4d1f6337152b7eca01657abb5427172a2a252",
+          "linkedWithoutMetadata": "0a8005c527a9dfbcbe670dff6cc4d1f6337152b7eca01657abb5427172a2a252"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address)",
+          "getFlipPrice()",
+          "getFlipResult()",
+          "flipCoin()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_initialized",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+              "retypedFrom": "bool"
+            },
+            {
+              "label": "_initializing",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+            },
+            {
+              "label": "_owner",
+              "offset": 2,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:15"
+            },
+            {
+              "label": "flipPrice",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_uint256",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:16"
+            },
+            {
+              "label": "usersFlips",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_address,t_struct(Flip)648_storage)",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:17"
+            },
+            {
+              "label": "usersFlipsCounter",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_uint256",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:18"
+            },
+            {
+              "label": "tykheLuckyOracle",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_contract(ITykheLuckyOracle)769",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:19"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_contract(ITykheLuckyOracle)769": {
+              "label": "contract ITykheLuckyOracle",
+              "numberOfBytes": "20"
+            },
+            "t_mapping(t_address,t_struct(Flip)648_storage)": {
+              "label": "mapping(address => struct Flip)",
+              "numberOfBytes": "32"
+            },
+            "t_struct(Flip)648_storage": {
+              "label": "struct Flip",
+              "members": [
+                {
+                  "label": "user",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "timestamp",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "flipNumber",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "flipResult",
+                  "type": "t_bool",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      },
+      "ITykheLuckyOracle": {
+        "src": "contracts/ITykheLuckyOracle.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "askOracle()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "TykheLuckyOracle": {
+        "src": "contracts/TykheLuckyOracle.sol:9",
+        "version": {
+          "withMetadata": "34465b47cea016a982cd45f7f98b476aaa5f088479e5a07baed120582d1a0e66",
+          "withoutMetadata": "368477c71d1d34f752e611041b223c4d51b403cd3c1895c2d561f755e7bb7a9b",
+          "linkedWithoutMetadata": "368477c71d1d34f752e611041b223c4d51b403cd3c1895c2d561f755e7bb7a9b"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address,address,bytes32)",
+          "transferOwnership(address)",
+          "requestRandomWords()",
+          "askOracle()",
+          "createNewSubscription()",
+          "getSubscriptionDetails()",
+          "pendingRequestExists()",
+          "topUpSubscription(uint256)",
+          "addConsumer(address)",
+          "removeConsumer(address)",
+          "cancelSubscription(address)",
+          "withdraw(uint256,address)",
+          "getLinkBalance()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_initialized",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+              "retypedFrom": "bool"
+            },
+            {
+              "label": "_initializing",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+            },
+            {
+              "label": "COORDINATOR",
+              "offset": 2,
+              "slot": "0",
+              "type": "t_contract(VRFCoordinatorV2Interface)241",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:10"
+            },
+            {
+              "label": "LINKTOKEN",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_contract(LinkTokenInterface)152",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:11"
+            },
+            {
+              "label": "vrfCoordinator",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_address",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:15"
+            },
+            {
+              "label": "link_token_contract",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_address",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:19"
+            },
+            {
+              "label": "keyHash",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_bytes32",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:24"
+            },
+            {
+              "label": "callbackGasLimit",
+              "offset": 0,
+              "slot": "5",
+              "type": "t_uint32",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:28"
+            },
+            {
+              "label": "requestConfirmations",
+              "offset": 4,
+              "slot": "5",
+              "type": "t_uint16",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:31"
+            },
+            {
+              "label": "numWords",
+              "offset": 6,
+              "slot": "5",
+              "type": "t_uint32",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:35"
+            },
+            {
+              "label": "_owner",
+              "offset": 10,
+              "slot": "5",
+              "type": "t_address",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:37"
+            },
+            {
+              "label": "s_randomWords",
+              "offset": 0,
+              "slot": "6",
+              "type": "t_array(t_uint256)dyn_storage",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:40"
+            },
+            {
+              "label": "s_requestId",
+              "offset": 0,
+              "slot": "7",
+              "type": "t_uint256",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:41"
+            },
+            {
+              "label": "s_subscriptionId",
+              "offset": 0,
+              "slot": "8",
+              "type": "t_uint64",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:42"
+            },
+            {
+              "label": "selfVRFConsumerBaseV2",
+              "offset": 8,
+              "slot": "8",
+              "type": "t_contract(VRFConsumerBaseV2)57",
+              "contract": "TykheLuckyOracle",
+              "src": "contracts/TykheLuckyOracle.sol:44"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_uint256)dyn_storage": {
+              "label": "uint256[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_contract(LinkTokenInterface)152": {
+              "label": "contract LinkTokenInterface",
+              "numberOfBytes": "20"
+            },
+            "t_contract(VRFConsumerBaseV2)57": {
+              "label": "contract VRFConsumerBaseV2",
+              "numberOfBytes": "20"
+            },
+            "t_contract(VRFCoordinatorV2Interface)241": {
+              "label": "contract VRFCoordinatorV2Interface",
+              "numberOfBytes": "20"
+            },
+            "t_uint16": {
+              "label": "uint16",
+              "numberOfBytes": "2"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "t_uint32": {
+              "label": "uint32",
+              "numberOfBytes": "4"
+            },
+            "t_uint64": {
+              "label": "uint64",
+              "numberOfBytes": "8"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      }
+    },
+    {
+      "Initializable": {
+        "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:57",
+        "inherit": [],
+        "libraries": [
+          "AddressUpgradeable"
+        ],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_initialized",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+              "retypedFrom": "bool"
+            },
+            {
+              "label": "_initializing",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      },
+      "AddressUpgradeable": {
+        "src": "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol:9",
+        "version": {
+          "withMetadata": "f500cce3554e76278de047319956321e0896d5bc4a40f304d8d928144146a14d",
+          "withoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db",
+          "linkedWithoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      },
+      "CoinFlip": {
+        "src": "contracts/CoinFlip.sol:14",
+        "version": {
+          "withMetadata": "8a5e453777cfbc92f25c5b31f5e8b5455fd640604c2b8c3ac12e9d40ffb1b5b6",
+          "withoutMetadata": "0a8005c527a9dfbcbe670dff6cc4d1f6337152b7eca01657abb5427172a2a252",
+          "linkedWithoutMetadata": "0a8005c527a9dfbcbe670dff6cc4d1f6337152b7eca01657abb5427172a2a252"
+        },
+        "inherit": [
+          "Initializable"
+        ],
+        "libraries": [],
+        "methods": [
+          "initialize(address)",
+          "getFlipPrice()",
+          "getFlipResult()",
+          "flipCoin()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_initialized",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+              "retypedFrom": "bool"
+            },
+            {
+              "label": "_initializing",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Initializable",
+              "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+            },
+            {
+              "label": "_owner",
+              "offset": 2,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:15"
+            },
+            {
+              "label": "flipPrice",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_uint256",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:16"
+            },
+            {
+              "label": "usersFlips",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_address,t_struct(Flip)406_storage)",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:17"
+            },
+            {
+              "label": "usersFlipsCounter",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_uint256",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:18"
+            },
+            {
+              "label": "tykheLuckyOracle",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_contract(ITykheLuckyOracle)527",
+              "contract": "CoinFlip",
+              "src": "contracts/CoinFlip.sol:19"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_contract(ITykheLuckyOracle)527": {
+              "label": "contract ITykheLuckyOracle",
+              "numberOfBytes": "20"
+            },
+            "t_mapping(t_address,t_struct(Flip)406_storage)": {
+              "label": "mapping(address => struct Flip)",
+              "numberOfBytes": "32"
+            },
+            "t_struct(Flip)406_storage": {
+              "label": "struct Flip",
+              "members": [
+                {
+                  "label": "user",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "timestamp",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "flipNumber",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "flipResult",
+                  "type": "t_bool",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      },
+      "ITykheLuckyOracle": {
+        "src": "contracts/ITykheLuckyOracle.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "askOracle()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1",
+          "flat": false
+        }
+      }
+    },
+    {
       "VRFConsumerBaseV2": {
         "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:97",
         "inherit": [],

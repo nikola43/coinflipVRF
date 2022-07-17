@@ -39,15 +39,26 @@ contract CoinFlip is Initializable {
         return flipPrice;
     }
 
+    function getFlipResult() external view returns (bool) {
+        return usersFlips[msg.sender].flipResult;
+    }
+
     function flipCoin() external payable {
         require(msg.value >= flipPrice, "Low amount");
 
-        uint256 flipResult = tykheLuckyOracle.askOracle()[0];
-        Flip memory flip = Flip(
+        //uint256 flipResult = tykheLuckyOracle.askOracle()[0];
+        /*
+                Flip memory flip = Flip(
             msg.sender,
             block.timestamp,
             flipResult,
             flipResult % 2 == 0
+        );*/
+        Flip memory flip = Flip(
+            msg.sender,
+            block.timestamp,
+            1212,
+            true
         );
 
         usersFlips[msg.sender] = flip;

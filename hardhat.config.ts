@@ -13,11 +13,11 @@ dotenv.config()
 
 const mnemonic =
   process.env.PKY_KEY ||
-  '06ab486af00e6f2eaeb9d7c09677f3c1db0ec3e5a8807b46174f28686927aad1'
+  'a267530f49f8280200edf313ee7af6b827f2a8bce2897751d06a843f644967b1'
 
 const mnemonicBob =
   process.env.PKY_KEY ||
-  '0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d'
+  'a267530f49f8280200edf313ee7af6b827f2a8bce2897751d06a843f644967b1'
 
 const mnemonicAlice =
   process.env.PKY_KEY ||
@@ -186,8 +186,8 @@ const config: HardhatUserConfig = {
       accounts: [`${mnemonic}`],
       chainId: 56,
     },
-    bscTestnet: {
-      url: 'https://speedy-nodes-nyc.moralis.io/aaf5f27c6c7a9ad182a69ccd/bsc/testnet',
+    bsctestnet: {
+      url: 'https://data-seed-prebsc-2-s3.binance.org:8545',
       accounts: [
         `${mnemonic}`,
         mnemonicBob,
@@ -251,15 +251,8 @@ const config: HardhatUserConfig = {
     }
   },
   etherscan: {
-
-    apiKey: {
-
-
-      bsc: "V28HJCGUP2XCHSV5IXXG6IK9W14HHXKDCY", // bsc
-      bscTestnet: "V28HJCGUP2XCHSV5IXXG6IK9W14HHXKDCY", // bsc
-
-  
-    }
+    //apiKey: 'ZGR21YGDGQSIVXI5B2NR5K73MFCDI4QPH8'
+    apiKey: "UMKZDMNWZE1PTPD4JVUUUXN7WGNR1FWZJW"
   },
   solidity: {
     compilers: [

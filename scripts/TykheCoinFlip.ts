@@ -1,7 +1,8 @@
-const { ethers } = require('hardhat')
+const { ethers, upgrades } = require('hardhat')
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import { Contract } from '@ethersproject/contracts';
 import { formatEther } from 'ethers/lib/utils';
+const { getImplementationAddress } = require('@openzeppelin/upgrades-core')
 const colors = require('colors/safe');
 import test_util from '../test/util'
 async function main(): Promise<void> {
@@ -9,9 +10,11 @@ async function main(): Promise<void> {
   let deployer: SignerWithAddress;
   let bob: SignerWithAddress;
   let alice: SignerWithAddress;
-
   let tykheLuckyOracle: Contract;
+  let tykheLuckyOracleIpml: string;
 
+  let coinFlip: Contract;
+  let coinFlipIpml: string;
 
   console.log("");
   const signers = await ethers.getSigners();
@@ -43,18 +46,50 @@ async function main(): Promise<void> {
     console.log();
 
     let contractName = 'TykheLuckyOracle'
+    let args = [
+      "0x6A2AAd07396B36Fe02a22b33cf443582f682c82f",
+      "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06",
+      "0xd4bb89654db74673a187bd804519e65e3f71a52bc55f11da7601a13dcf505314",
+    ];
     let contractFactory = await ethers.getContractFactory(contractName)
-    tykheLuckyOracle = await contractFactory.deploy()
+    tykheLuckyOracle = await upgrades.deployProxy(contractFactory, args)
     await tykheLuckyOracle.deployed()
+    tykheLuckyOracleIpml = await getImplementationAddress(
+      ethers.provider,
+      tykheLuckyOracle.address
+    )
 
-
-    console.log(`${colors.cyan(contractName + ' Address: ')} ${colors.yellow(tykheLuckyOracle.address)}`)
+    console.log(`${colors.cyan(contractName + 'ProxyAddress: ')} ${colors.yellow(tykheLuckyOracle.address)}`)
+    console.log(`${colors.cyan(contractName + 'ImplAddress: ')} ${colors.yellow(tykheLuckyOracleIpml)}`)
     console.log("");
+    await test_util.updateABI(contractName)
 
     if (verify) {
-      await test_util.updateABI(contractName)
       console.log('\nVerifing... ' + tykheLuckyOracle.address)
-      await test_util.verify(tykheLuckyOracle.address)
+      await test_util.verifyWithotDeploy(contractName, tykheLuckyOracle);
+    }
+
+
+
+    contractName = 'CoinFlip'
+    args = [
+      tykheLuckyOracle.address
+    ];
+    contractFactory = await ethers.getContractFactory(contractName)
+    coinFlip = await upgrades.deployProxy(contractFactory, args)
+    await coinFlip.deployed()
+    coinFlipIpml = await getImplementationAddress(
+      ethers.provider,
+      coinFlip.address
+    )
+
+    console.log(`${colors.cyan(contractName + 'ProxyAddress: ')} ${colors.yellow(coinFlip.address)}`)
+    console.log(`${colors.cyan(contractName + 'ImplAddress: ')} ${colors.yellow(coinFlipIpml)}`)
+    console.log("");
+    await test_util.updateABI(contractName)
+    if (verify) {
+      console.log('\nVerifing... ' + tykheLuckyOracle.address)
+      await test_util.verifyWithotDeploy(contractName, coinFlip);
     }
   }
 }
