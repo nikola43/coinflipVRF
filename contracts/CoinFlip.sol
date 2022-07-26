@@ -13,7 +13,6 @@ struct Flip {
 
 contract CoinFlip is Initializable {
     address private _owner;
-    uint256 private flipPrice;
     mapping(address => Flip) public usersFlips;
     uint256 private usersFlipsCounter;
     ITykheLuckyOracle tykheLuckyOracle;
@@ -30,37 +29,73 @@ contract CoinFlip is Initializable {
 
     function initialize(address _tykheLuckyOracleAddress) public initializer {
         _owner = msg.sender;
-        flipPrice = 10000000000000000; // 0.01
         usersFlipsCounter = 0;
         tykheLuckyOracle = ITykheLuckyOracle(_tykheLuckyOracleAddress);
-    }
-
-    function getFlipPrice() external view returns (uint256) {
-        return flipPrice;
     }
 
     function getFlipResult() external view returns (bool) {
         return usersFlips[msg.sender].flipResult;
     }
 
-    function flipCoin() external payable {
-        require(msg.value >= flipPrice, "Low amount");
+    function flipCoinHead(uint256 mode) external payable {
+        uint256 requiredAmount = 50000000000000000; // 0.05 BNB
+        if (mode == 0) {
+            requiredAmount = 50000000000000000; // 0.1 BNB
+        } else if (mode == 1) {
+            requiredAmount = 100000000000000000; // 0.1 BNB
+        } else if (mode == 2) {
+            requiredAmount = 250000000000000000; // 0.25 BNB
+        } else if (mode == 3) {
+            requiredAmount = 500000000000000000; // 0.5 BNB
+        } else if (mode == 4) {
+            requiredAmount = 1000000000000000000; // 1 BNB
+        } else if (mode == 5) {
+            requiredAmount = 2000000000000000000; // 2 BNB
+        } else {
+            revert("invalid mode");
+        }
 
-        //uint256 flipResult = tykheLuckyOracle.askOracle()[0];
-        /*
-                Flip memory flip = Flip(
-            msg.sender,
-            block.timestamp,
-            flipResult,
-            flipResult % 2 == 0
-        );*/
-        Flip memory flip = Flip(
-            msg.sender,
-            block.timestamp,
-            1212,
-            true
-        );
+        require(msg.value >= requiredAmount, "Low amount");
+
+        uint256 flipResult = tykheLuckyOracle.askOracle()[0];
+        bool win = flipResult % 2 == 0;
+        Flip memory flip = Flip(msg.sender, block.timestamp, flipResult, win);
 
         usersFlips[msg.sender] = flip;
+
+        if (win) {
+            payable(msg.sender).transfer(msg.value * 2);
+        }
+    }
+
+    function flipCoinTail(uint256 mode) external payable {
+        uint256 requiredAmount = 50000000000000000; // 0.05 BNB
+        if (mode == 0) {
+            requiredAmount = 50000000000000000; // 0.1 BNB
+        } else if (mode == 1) {
+            requiredAmount = 100000000000000000; // 0.1 BNB
+        } else if (mode == 2) {
+            requiredAmount = 250000000000000000; // 0.25 BNB
+        } else if (mode == 3) {
+            requiredAmount = 500000000000000000; // 0.5 BNB
+        } else if (mode == 4) {
+            requiredAmount = 1000000000000000000; // 1 BNB
+        } else if (mode == 5) {
+            requiredAmount = 2000000000000000000; // 2 BNB
+        } else {
+            revert("invalid mode");
+        }
+
+        require(msg.value >= requiredAmount, "Low amount");
+
+        uint256 flipResult = tykheLuckyOracle.askOracle()[0];
+        bool win = flipResult % 2 != 0;
+        Flip memory flip = Flip(msg.sender, block.timestamp, flipResult, win);
+
+        usersFlips[msg.sender] = flip;
+
+        if (win) {
+            payable(msg.sender).transfer(msg.value * 2);
+        }
     }
 }
