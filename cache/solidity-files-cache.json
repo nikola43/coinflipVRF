@@ -193,8 +193,7 @@
                 "ast"
               ]
             }
-          },
-          "libraries": {}
+          }
         }
       },
       "imports": [
@@ -233,8 +232,7 @@
                 "ast"
               ]
             }
-          },
-          "libraries": {}
+          }
         }
       },
       "imports": [
@@ -272,8 +270,7 @@
                 "ast"
               ]
             }
-          },
-          "libraries": {}
+          }
         }
       },
       "imports": [],
@@ -309,8 +306,7 @@
                 "ast"
               ]
             }
-          },
-          "libraries": {}
+          }
         }
       },
       "imports": [],
@@ -322,8 +318,8 @@
       ]
     },
     "/home/persefone/dev/coinflipVRF/contracts/TykheLuckyOracle.sol": {
-      "lastModificationDate": 1657556168996,
-      "contentHash": "17492e7ddb7354dfa347044448f02de1",
+      "lastModificationDate": 1658852261412,
+      "contentHash": "7d0a3da9014d90f26b09f671d156e9e3",
       "sourceName": "contracts/TykheLuckyOracle.sol",
       "solcConfig": {
         "version": "0.8.15",
@@ -346,8 +342,7 @@
                 "ast"
               ]
             }
-          },
-          "libraries": {}
+          }
         }
       },
       "imports": [
@@ -388,8 +383,7 @@
                 "ast"
               ]
             }
-          },
-          "libraries": {}
+          }
         }
       },
       "imports": [],
@@ -425,8 +419,7 @@
                 "ast"
               ]
             }
-          },
-          "libraries": {}
+          }
         }
       },
       "imports": [],
@@ -462,8 +455,7 @@
                 "ast"
               ]
             }
-          },
-          "libraries": {}
+          }
         }
       },
       "imports": [],

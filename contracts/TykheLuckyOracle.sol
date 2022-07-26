@@ -6,8 +6,7 @@ import "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 
-contract TykheLuckyOracle is Initializable {
-    VRFCoordinatorV2Interface COORDINATOR;
+contract TykheLuckyOracle is VRFConsumerBaseV2 {
     LinkTokenInterface LINKTOKEN;
 
     // Avalanche Fuji coordinator. For other networks,
@@ -40,8 +39,7 @@ contract TykheLuckyOracle is Initializable {
     uint256[] public s_randomWords;
     uint256 public s_requestId;
     uint64 public s_subscriptionId;
-
-    VRFConsumerBaseV2 selfVRFConsumerBaseV2;
+    VRFCoordinatorV2Interface COORDINATOR;
 
     // Modifier to verify the caller is the owner of the contract
     modifier onlyOwner() {
@@ -56,11 +54,11 @@ contract TykheLuckyOracle is Initializable {
 
     /// @custom:oz-upgrades-unsafe-allow constructor
 
-    function initialize(
+    constructor(
         address _vrfCoordinator,
         address _link_token_contract,
         bytes32 _keyHash
-    ) public initializer {
+    ) VRFConsumerBaseV2(vrfCoordinator) {
         _owner = msg.sender;
         numWords = 1;
         requestConfirmations = 1;
@@ -70,9 +68,8 @@ contract TykheLuckyOracle is Initializable {
         link_token_contract = _link_token_contract;
         keyHash = _keyHash;
 
-        COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
         LINKTOKEN = LinkTokenInterface(link_token_contract);
-        selfVRFConsumerBaseV2 = VRFConsumerBaseV2(vrfCoordinator);
+        COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
 
         //Create a new subscription when you deploy the contract.
         //createNewSubscription();
@@ -108,7 +105,7 @@ contract TykheLuckyOracle is Initializable {
     function fulfillRandomWords(
         uint256, /* requestId */
         uint256[] memory randomWords
-    ) internal {
+    ) internal override {
         s_randomWords = randomWords;
     }
 
