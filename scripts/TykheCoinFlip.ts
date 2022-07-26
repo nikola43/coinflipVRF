@@ -37,7 +37,7 @@ async function main(): Promise<void> {
     bob = signers[1];
     alice = signers[2];
 
-    const verify = true;
+    const verify = false;
 
     let initialBalance = formatEther(await deployer.getBalance());
     console.log(colors.cyan('Deployer Address: ') + colors.yellow(deployer.address));

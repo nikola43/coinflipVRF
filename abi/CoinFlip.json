@@ -32,33 +32,61 @@
     "type": "event"
   },
   {
-    "inputs": [],
-    "name": "flipCoin",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "mode",
+        "type": "uint256"
+      }
+    ],
+    "name": "flipCoinHead",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "mode",
+        "type": "uint256"
+      }
+    ],
+    "name": "flipCoinTail",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "getFlipPrice",
+    "name": "getLastFlips",
     "outputs": [
       {
-        "internalType": "uint256",
+        "components": [
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "flipNumber",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "flipResult",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct Flip[]",
         "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getFlipResult",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
+        "type": "tuple[]"
       }
     ],
     "stateMutability": "view",
@@ -80,9 +108,9 @@
   {
     "inputs": [
       {
-        "internalType": "address",
+        "internalType": "uint256",
         "name": "",
-        "type": "address"
+        "type": "uint256"
       }
     ],
     "name": "usersFlips",
