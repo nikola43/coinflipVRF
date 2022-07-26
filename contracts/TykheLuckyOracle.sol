@@ -57,7 +57,8 @@ contract TykheLuckyOracle is VRFConsumerBaseV2 {
     constructor(
         address _vrfCoordinator,
         address _link_token_contract,
-        bytes32 _keyHash
+        bytes32 _keyHash,
+        uint64 subscriptionId
     ) VRFConsumerBaseV2(vrfCoordinator) {
         _owner = msg.sender;
         numWords = 1;
@@ -70,7 +71,7 @@ contract TykheLuckyOracle is VRFConsumerBaseV2 {
 
         LINKTOKEN = LinkTokenInterface(link_token_contract);
         COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
-
+        s_subscriptionId = subscriptionId;
         //Create a new subscription when you deploy the contract.
         //createNewSubscription();
     }

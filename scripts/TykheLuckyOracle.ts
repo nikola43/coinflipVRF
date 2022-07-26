@@ -44,7 +44,7 @@ async function main(): Promise<void> {
 
     let contractName = 'TykheLuckyOracle'
     let contractFactory = await ethers.getContractFactory(contractName)
-    tykheLuckyOracle = await contractFactory.deploy("0x6A2AAd07396B36Fe02a22b33cf443582f682c82f", "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06", "0xd4bb89654db74673a187bd804519e65e3f71a52bc55f11da7601a13dcf505314")
+    tykheLuckyOracle = await contractFactory.deploy("0x6A2AAd07396B36Fe02a22b33cf443582f682c82f", "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06", "0xd4bb89654db74673a187bd804519e65e3f71a52bc55f11da7601a13dcf505314", 1417)
     await tykheLuckyOracle.deployed()
 
 
