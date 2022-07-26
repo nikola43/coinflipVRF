@@ -22,32 +22,41 @@ import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 
 interface CoinFlipInterface extends ethers.utils.Interface {
   functions: {
-    "flipCoin()": FunctionFragment;
-    "getFlipPrice()": FunctionFragment;
-    "getFlipResult()": FunctionFragment;
+    "flipCoinHead(uint256)": FunctionFragment;
+    "flipCoinTail(uint256)": FunctionFragment;
+    "getLastFlips()": FunctionFragment;
     "initialize(address)": FunctionFragment;
-    "usersFlips(address)": FunctionFragment;
+    "usersFlips(uint256)": FunctionFragment;
   };
 
-  encodeFunctionData(functionFragment: "flipCoin", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "getFlipPrice",
-    values?: undefined
+    functionFragment: "flipCoinHead",
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getFlipResult",
+    functionFragment: "flipCoinTail",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getLastFlips",
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "initialize", values: [string]): string;
-  encodeFunctionData(functionFragment: "usersFlips", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "usersFlips",
+    values: [BigNumberish]
+  ): string;
 
-  decodeFunctionResult(functionFragment: "flipCoin", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getFlipPrice",
+    functionFragment: "flipCoinHead",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getFlipResult",
+    functionFragment: "flipCoinTail",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getLastFlips",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
@@ -112,13 +121,28 @@ export class CoinFlip extends BaseContract {
   interface: CoinFlipInterface;
 
   functions: {
-    flipCoin(
+    flipCoinHead(
+      mode: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    getFlipPrice(overrides?: CallOverrides): Promise<[BigNumber]>;
+    flipCoinTail(
+      mode: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
 
-    getFlipResult(overrides?: CallOverrides): Promise<[boolean]>;
+    getLastFlips(
+      overrides?: CallOverrides
+    ): Promise<
+      [
+        ([string, BigNumber, BigNumber, boolean] & {
+          user: string;
+          timestamp: BigNumber;
+          flipNumber: BigNumber;
+          flipResult: boolean;
+        })[]
+      ]
+    >;
 
     initialize(
       _tykheLuckyOracleAddress: string,
@@ -126,7 +150,7 @@ export class CoinFlip extends BaseContract {
     ): Promise<ContractTransaction>;
 
     usersFlips(
-      arg0: string,
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<
       [string, BigNumber, BigNumber, boolean] & {
@@ -138,13 +162,26 @@ export class CoinFlip extends BaseContract {
     >;
   };
 
-  flipCoin(
+  flipCoinHead(
+    mode: BigNumberish,
     overrides?: PayableOverrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  getFlipPrice(overrides?: CallOverrides): Promise<BigNumber>;
+  flipCoinTail(
+    mode: BigNumberish,
+    overrides?: PayableOverrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
-  getFlipResult(overrides?: CallOverrides): Promise<boolean>;
+  getLastFlips(
+    overrides?: CallOverrides
+  ): Promise<
+    ([string, BigNumber, BigNumber, boolean] & {
+      user: string;
+      timestamp: BigNumber;
+      flipNumber: BigNumber;
+      flipResult: boolean;
+    })[]
+  >;
 
   initialize(
     _tykheLuckyOracleAddress: string,
@@ -152,7 +189,7 @@ export class CoinFlip extends BaseContract {
   ): Promise<ContractTransaction>;
 
   usersFlips(
-    arg0: string,
+    arg0: BigNumberish,
     overrides?: CallOverrides
   ): Promise<
     [string, BigNumber, BigNumber, boolean] & {
@@ -164,11 +201,20 @@ export class CoinFlip extends BaseContract {
   >;
 
   callStatic: {
-    flipCoin(overrides?: CallOverrides): Promise<void>;
+    flipCoinHead(mode: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
-    getFlipPrice(overrides?: CallOverrides): Promise<BigNumber>;
+    flipCoinTail(mode: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
-    getFlipResult(overrides?: CallOverrides): Promise<boolean>;
+    getLastFlips(
+      overrides?: CallOverrides
+    ): Promise<
+      ([string, BigNumber, BigNumber, boolean] & {
+        user: string;
+        timestamp: BigNumber;
+        flipNumber: BigNumber;
+        flipResult: boolean;
+      })[]
+    >;
 
     initialize(
       _tykheLuckyOracleAddress: string,
@@ -176,7 +222,7 @@ export class CoinFlip extends BaseContract {
     ): Promise<void>;
 
     usersFlips(
-      arg0: string,
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<
       [string, BigNumber, BigNumber, boolean] & {
@@ -215,30 +261,41 @@ export class CoinFlip extends BaseContract {
   };
 
   estimateGas: {
-    flipCoin(
+    flipCoinHead(
+      mode: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    getFlipPrice(overrides?: CallOverrides): Promise<BigNumber>;
+    flipCoinTail(
+      mode: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
 
-    getFlipResult(overrides?: CallOverrides): Promise<BigNumber>;
+    getLastFlips(overrides?: CallOverrides): Promise<BigNumber>;
 
     initialize(
       _tykheLuckyOracleAddress: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    usersFlips(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
+    usersFlips(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    flipCoin(
+    flipCoinHead(
+      mode: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    getFlipPrice(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    flipCoinTail(
+      mode: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
-    getFlipResult(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getLastFlips(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     initialize(
       _tykheLuckyOracleAddress: string,
@@ -246,7 +303,7 @@ export class CoinFlip extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     usersFlips(
-      arg0: string,
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };

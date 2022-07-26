@@ -44,6 +44,11 @@
       "address": "0xDe25Ea8BaCEBB7902eC1C267ce33E8ef7bAAa4F7",
       "txHash": "0x170d999fad470e2c6e2dde96c94900ddb92553dfa99fc305e74e74d5974a6811",
       "kind": "transparent"
+    },
+    {
+      "address": "0x2Dcbd9a5EED61439482538A2968A8feA31bA1495",
+      "txHash": "0xb2c2f2bb18457fb47b33bf9a45e1af7580b9551b30a295c882bacf5ec9fb8d35",
+      "kind": "transparent"
     }
   ],
   "impls": {
@@ -304,6 +309,119 @@
           },
           "t_mapping(t_address,t_struct(Flip)648_storage)": {
             "label": "mapping(address => struct Flip)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Flip)648_storage": {
+            "label": "struct Flip",
+            "members": [
+              {
+                "label": "user",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "timestamp",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "flipNumber",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "flipResult",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "3"
+              }
+            ],
+            "numberOfBytes": "128"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "bde5283288b8186a4db5b1ba6111b6696a2e680fd9c6ab800a653af741a86b2b": {
+      "address": "0xa345DA1b1dda869B3413F68a464aF0a0b44d2B42",
+      "txHash": "0x227b6dcb6a1f82852b6db292b90b8a6e03c7ba858f1ce72f5af47b608dcb0abd",
+      "layout": {
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "_owner",
+            "offset": 2,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "CoinFlip",
+            "src": "contracts/CoinFlip.sol:15"
+          },
+          {
+            "label": "usersFlips",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_uint256,t_struct(Flip)648_storage)",
+            "contract": "CoinFlip",
+            "src": "contracts/CoinFlip.sol:16"
+          },
+          {
+            "label": "usersFlipsCounter",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256",
+            "contract": "CoinFlip",
+            "src": "contracts/CoinFlip.sol:17"
+          },
+          {
+            "label": "tykheLuckyOracle",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_contract(ITykheLuckyOracle)1014",
+            "contract": "CoinFlip",
+            "src": "contracts/CoinFlip.sol:18"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(ITykheLuckyOracle)1014": {
+            "label": "contract ITykheLuckyOracle",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_uint256,t_struct(Flip)648_storage)": {
+            "label": "mapping(uint256 => struct Flip)",
             "numberOfBytes": "32"
           },
           "t_struct(Flip)648_storage": {

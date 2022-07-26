@@ -11,7 +11,6 @@ async function main(): Promise<void> {
   let bob: SignerWithAddress;
   let alice: SignerWithAddress;
   let tykheLuckyOracle: Contract;
-  let tykheLuckyOracleIpml: string;
 
   let coinFlip: Contract;
   let coinFlipIpml: string;
@@ -38,7 +37,7 @@ async function main(): Promise<void> {
     bob = signers[1];
     alice = signers[2];
 
-    const verify = true;
+    const verify = false;
 
     let initialBalance = formatEther(await deployer.getBalance());
     console.log(colors.cyan('Deployer Address: ') + colors.yellow(deployer.address));
@@ -46,21 +45,14 @@ async function main(): Promise<void> {
     console.log();
 
     let contractName = 'TykheLuckyOracle'
-    let args = [
-      "0x6A2AAd07396B36Fe02a22b33cf443582f682c82f",
-      "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06",
-      "0xd4bb89654db74673a187bd804519e65e3f71a52bc55f11da7601a13dcf505314",
-    ];
     let contractFactory = await ethers.getContractFactory(contractName)
-    tykheLuckyOracle = await upgrades.deployProxy(contractFactory, args)
+    tykheLuckyOracle = await contractFactory.deploy("0x6A2AAd07396B36Fe02a22b33cf443582f682c82f", "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06", "0xd4bb89654db74673a187bd804519e65e3f71a52bc55f11da7601a13dcf505314")
     await tykheLuckyOracle.deployed()
-    tykheLuckyOracleIpml = await getImplementationAddress(
-      ethers.provider,
-      tykheLuckyOracle.address
-    )
 
+
+    console.log(`${colors.cyan(contractName + ' Address: ')} ${colors.yellow(tykheLuckyOracle.address)}`)
+    console.log("");
     console.log(`${colors.cyan(contractName + 'ProxyAddress: ')} ${colors.yellow(tykheLuckyOracle.address)}`)
-    console.log(`${colors.cyan(contractName + 'ImplAddress: ')} ${colors.yellow(tykheLuckyOracleIpml)}`)
     console.log("");
     await test_util.updateABI(contractName)
 
@@ -72,7 +64,7 @@ async function main(): Promise<void> {
 
 
     contractName = 'CoinFlip'
-    args = [
+    let args = [
       tykheLuckyOracle.address
     ];
     contractFactory = await ethers.getContractFactory(contractName)
