@@ -13,7 +13,7 @@ struct Flip {
 
 contract CoinFlip is Initializable {
     address private _owner;
-    mapping(address => Flip) public usersFlips;
+    mapping(uint256 => Flip) public usersFlips;
     uint256 private usersFlipsCounter;
     ITykheLuckyOracle tykheLuckyOracle;
 
@@ -33,8 +33,14 @@ contract CoinFlip is Initializable {
         tykheLuckyOracle = ITykheLuckyOracle(_tykheLuckyOracleAddress);
     }
 
-    function getFlipResult() external view returns (bool) {
-        return usersFlips[msg.sender].flipResult;
+    function getLastFlips() external view returns (Flip[] memory) {
+        Flip[] memory flips = new Flip[](usersFlipsCounter);
+
+        for (uint256 index = 0; index < usersFlipsCounter; index++) {
+            flips[index] = usersFlips[index];
+        }
+
+        return flips;
     }
 
     function flipCoinHead(uint256 mode) external payable {
@@ -61,7 +67,8 @@ contract CoinFlip is Initializable {
         bool win = flipResult % 2 == 0;
         Flip memory flip = Flip(msg.sender, block.timestamp, flipResult, win);
 
-        usersFlips[msg.sender] = flip;
+        usersFlipsCounter += 1;
+        usersFlips[usersFlipsCounter] = flip;
 
         if (win) {
             payable(msg.sender).transfer(msg.value * 2);
@@ -92,7 +99,8 @@ contract CoinFlip is Initializable {
         bool win = flipResult % 2 != 0;
         Flip memory flip = Flip(msg.sender, block.timestamp, flipResult, win);
 
-        usersFlips[msg.sender] = flip;
+        usersFlipsCounter += 1;
+        usersFlips[usersFlipsCounter] = flip;
 
         if (win) {
             payable(msg.sender).transfer(msg.value * 2);
