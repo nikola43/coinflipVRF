@@ -169,8 +169,8 @@
       ]
     },
     "/home/persefone/dev/coinflipVRF/contracts/CoinFlip.sol": {
-      "lastModificationDate": 1657555085717,
-      "contentHash": "b331ed3e5c04f7401f542a17cbe2930d",
+      "lastModificationDate": 1658853812888,
+      "contentHash": "d16f9bccd21e6cb8416195de49fd496f",
       "sourceName": "contracts/CoinFlip.sol",
       "solcConfig": {
         "version": "0.8.15",
