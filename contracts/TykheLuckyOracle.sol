@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.14;
 
-import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
@@ -33,7 +32,7 @@ contract TykheLuckyOracle is VRFConsumerBaseV2 {
     // Cannot exceed VRFCoordinatorV2.MAX_NUM_WORDS.
     uint32 numWords;
 
-    address private _owner;
+    address private s_owner;
 
     // Storage parameters
     uint256[] public s_randomWords;
@@ -43,7 +42,7 @@ contract TykheLuckyOracle is VRFConsumerBaseV2 {
 
     // Modifier to verify the caller is the owner of the contract
     modifier onlyOwner() {
-        require(msg.sender == _owner);
+        require(msg.sender == s_owner);
         _;
     }
 
@@ -60,9 +59,9 @@ contract TykheLuckyOracle is VRFConsumerBaseV2 {
         bytes32 _keyHash,
         uint64 subscriptionId
     ) VRFConsumerBaseV2(vrfCoordinator) {
-        _owner = msg.sender;
+        s_owner = msg.sender;
         numWords = 1;
-        requestConfirmations = 1;
+        requestConfirmations = 3;
         callbackGasLimit = 100000;
 
         vrfCoordinator = _vrfCoordinator;
@@ -85,8 +84,8 @@ contract TykheLuckyOracle is VRFConsumerBaseV2 {
             newOwner != address(0),
             "Ownable: new owner is the zero address"
         );
-        address oldOwner = _owner;
-        _owner = newOwner;
+        address oldOwner = s_owner;
+        s_owner = newOwner;
         emit OwnershipTransferred(oldOwner, newOwner);
     }
 
