@@ -10,7 +10,7 @@ async function main(): Promise<void> {
   let deployer: SignerWithAddress;
   let bob: SignerWithAddress;
   let alice: SignerWithAddress;
-  //let tykheLuckyOracle: Contract;
+  let tykheLuckyOracle: Contract;
 
   let coinFlip: Contract;
   let coinFlipIpml: string;
@@ -46,26 +46,26 @@ async function main(): Promise<void> {
 
     let contractName = 'TykheLuckyOracle'
     let contractFactory = await ethers.getContractFactory(contractName)
-    // tykheLuckyOracle = await contractFactory.deploy("0x6A2AAd07396B36Fe02a22b33cf443582f682c82f", "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06", "0xd4bb89654db74673a187bd804519e65e3f71a52bc55f11da7601a13dcf505314")
-    // await tykheLuckyOracle.deployed()
+    tykheLuckyOracle = await contractFactory.deploy("0x6A2AAd07396B36Fe02a22b33cf443582f682c82f", "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06", "0xd4bb89654db74673a187bd804519e65e3f71a52bc55f11da7601a13dcf505314")
+    await tykheLuckyOracle.deployed()
 
 
-    // console.log(`${colors.cyan(contractName + ' Address: ')} ${colors.yellow(tykheLuckyOracle.address)}`)
-    // console.log("");
-    // console.log(`${colors.cyan(contractName + 'ProxyAddress: ')} ${colors.yellow(tykheLuckyOracle.address)}`)
-    // console.log("");
-    // await test_util.updateABI(contractName)
+    console.log(`${colors.cyan(contractName + ' Address: ')} ${colors.yellow(tykheLuckyOracle.address)}`)
+    console.log("");
+    console.log(`${colors.cyan(contractName + 'ProxyAddress: ')} ${colors.yellow(tykheLuckyOracle.address)}`)
+    console.log("");
+    await test_util.updateABI(contractName)
 
-    // if (verify) {
-    //   console.log('\nVerifing... ' + tykheLuckyOracle.address)
-    //   await test_util.verifyWithotDeploy(contractName, tykheLuckyOracle);
-    // }
+    if (verify) {
+      console.log('\nVerifing... ' + tykheLuckyOracle.address)
+      await test_util.verifyWithotDeploy(contractName, tykheLuckyOracle);
+    }
 
 
 
     contractName = 'CoinFlip'
     let args = [
-      "0x35e3AE2a8c039f1010fF7044b2744198AD6F16C3"
+      tykheLuckyOracle.address
     ];
     contractFactory = await ethers.getContractFactory(contractName)
     coinFlip = await upgrades.deployProxy(contractFactory, args)
@@ -80,7 +80,7 @@ async function main(): Promise<void> {
     console.log("");
     await test_util.updateABI(contractName)
     if (verify) {
-      console.log('\nVerifing... ' + "0x35e3AE2a8c039f1010fF7044b2744198AD6F16C3")
+      console.log('\nVerifing... ' + tykheLuckyOracle.address)
       await test_util.verifyWithotDeploy(contractName, coinFlip);
     }
   }
