@@ -22,6 +22,7 @@ import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 
 interface CoinFlipInterface extends ethers.utils.Interface {
   functions: {
+    "flipCoin(bool,uint256)": FunctionFragment;
     "flipCoinHead(uint256)": FunctionFragment;
     "flipCoinTail(uint256)": FunctionFragment;
     "getLastFlips()": FunctionFragment;
@@ -29,6 +30,10 @@ interface CoinFlipInterface extends ethers.utils.Interface {
     "usersFlips(uint256)": FunctionFragment;
   };
 
+  encodeFunctionData(
+    functionFragment: "flipCoin",
+    values: [boolean, BigNumberish]
+  ): string;
   encodeFunctionData(
     functionFragment: "flipCoinHead",
     values: [BigNumberish]
@@ -47,6 +52,7 @@ interface CoinFlipInterface extends ethers.utils.Interface {
     values: [BigNumberish]
   ): string;
 
+  decodeFunctionResult(functionFragment: "flipCoin", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "flipCoinHead",
     data: BytesLike
@@ -121,6 +127,12 @@ export class CoinFlip extends BaseContract {
   interface: CoinFlipInterface;
 
   functions: {
+    flipCoin(
+      bet: boolean,
+      mode: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     flipCoinHead(
       mode: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -162,6 +174,12 @@ export class CoinFlip extends BaseContract {
     >;
   };
 
+  flipCoin(
+    bet: boolean,
+    mode: BigNumberish,
+    overrides?: PayableOverrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   flipCoinHead(
     mode: BigNumberish,
     overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -201,6 +219,12 @@ export class CoinFlip extends BaseContract {
   >;
 
   callStatic: {
+    flipCoin(
+      bet: boolean,
+      mode: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     flipCoinHead(mode: BigNumberish, overrides?: CallOverrides): Promise<void>;
 
     flipCoinTail(mode: BigNumberish, overrides?: CallOverrides): Promise<void>;
@@ -261,6 +285,12 @@ export class CoinFlip extends BaseContract {
   };
 
   estimateGas: {
+    flipCoin(
+      bet: boolean,
+      mode: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     flipCoinHead(
       mode: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -285,6 +315,12 @@ export class CoinFlip extends BaseContract {
   };
 
   populateTransaction: {
+    flipCoin(
+      bet: boolean,
+      mode: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     flipCoinHead(
       mode: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }

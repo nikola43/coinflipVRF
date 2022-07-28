@@ -4,6 +4,7 @@
 import type {
   BaseContract,
   BigNumber,
+  BigNumberish,
   BytesLike,
   CallOverrides,
   ContractTransaction,
@@ -13,11 +14,7 @@ import type {
   Signer,
   utils,
 } from "ethers";
-import type {
-  FunctionFragment,
-  Result,
-  EventFragment,
-} from "@ethersproject/abi";
+import type { FunctionFragment, Result } from "@ethersproject/abi";
 import type { Listener, Provider } from "@ethersproject/providers";
 import type {
   TypedEventFilter,
@@ -27,71 +24,173 @@ import type {
   PromiseOrValue,
 } from "../common";
 
+export type FlipStruct = {
+  user: PromiseOrValue<string>;
+  timestamp: PromiseOrValue<BigNumberish>;
+  flipNumber: PromiseOrValue<BigNumberish>;
+  flipResult: PromiseOrValue<boolean>;
+};
+
+export type FlipStructOutput = [string, BigNumber, BigNumber, boolean] & {
+  user: string;
+  timestamp: BigNumber;
+  flipNumber: BigNumber;
+  flipResult: boolean;
+};
+
 export interface CoinFlipInterface extends utils.Interface {
   functions: {
-    "flipCoin()": FunctionFragment;
-    "getFlipPrice()": FunctionFragment;
-    "initialize(address)": FunctionFragment;
-    "usersFlips(address)": FunctionFragment;
+    "addConsumer(address)": FunctionFragment;
+    "cancelSubscription(address)": FunctionFragment;
+    "flipCoin(bool,uint256)": FunctionFragment;
+    "getLastFlips()": FunctionFragment;
+    "getSubscriptionDetails()": FunctionFragment;
+    "pendingRequestExists()": FunctionFragment;
+    "rawFulfillRandomWords(uint256,uint256[])": FunctionFragment;
+    "removeConsumer(address)": FunctionFragment;
+    "requestRandomWords()": FunctionFragment;
+    "s_randomWords(uint256)": FunctionFragment;
+    "s_requestId()": FunctionFragment;
+    "s_subscriptionId()": FunctionFragment;
+    "topUpSubscription(uint256)": FunctionFragment;
+    "usersFlips(uint256)": FunctionFragment;
+    "withdraw(uint256,address)": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
+      | "addConsumer"
+      | "cancelSubscription"
       | "flipCoin"
-      | "getFlipPrice"
-      | "initialize"
+      | "getLastFlips"
+      | "getSubscriptionDetails"
+      | "pendingRequestExists"
+      | "rawFulfillRandomWords"
+      | "removeConsumer"
+      | "requestRandomWords"
+      | "s_randomWords"
+      | "s_requestId"
+      | "s_subscriptionId"
+      | "topUpSubscription"
       | "usersFlips"
+      | "withdraw"
   ): FunctionFragment;
 
-  encodeFunctionData(functionFragment: "flipCoin", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "getFlipPrice",
+    functionFragment: "addConsumer",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "cancelSubscription",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "flipCoin",
+    values: [PromiseOrValue<boolean>, PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getLastFlips",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "initialize",
+    functionFragment: "getSubscriptionDetails",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "pendingRequestExists",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "rawFulfillRandomWords",
+    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>[]]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "removeConsumer",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
+    functionFragment: "requestRandomWords",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "s_randomWords",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "s_requestId",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "s_subscriptionId",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "topUpSubscription",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "usersFlips",
-    values: [PromiseOrValue<string>]
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "withdraw",
+    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<string>]
   ): string;
 
-  decodeFunctionResult(functionFragment: "flipCoin", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getFlipPrice",
+    functionFragment: "addConsumer",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "cancelSubscription",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "flipCoin", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getLastFlips",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getSubscriptionDetails",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "pendingRequestExists",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "rawFulfillRandomWords",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "removeConsumer",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "requestRandomWords",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "s_randomWords",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "s_requestId",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "s_subscriptionId",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "topUpSubscription",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "usersFlips", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
 
-  events: {
-    "Initialized(uint8)": EventFragment;
-    "OwnershipTransferred(address,address)": EventFragment;
-  };
-
-  getEvent(nameOrSignatureOrTopic: "Initialized"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
+  events: {};
 }
-
-export interface InitializedEventObject {
-  version: number;
-}
-export type InitializedEvent = TypedEvent<[number], InitializedEventObject>;
-
-export type InitializedEventFilter = TypedEventFilter<InitializedEvent>;
-
-export interface OwnershipTransferredEventObject {
-  previousOwner: string;
-  newOwner: string;
-}
-export type OwnershipTransferredEvent = TypedEvent<
-  [string, string],
-  OwnershipTransferredEventObject
->;
-
-export type OwnershipTransferredEventFilter =
-  TypedEventFilter<OwnershipTransferredEvent>;
 
 export interface CoinFlip extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
@@ -120,19 +219,68 @@ export interface CoinFlip extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    addConsumer(
+      consumerAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
+    cancelSubscription(
+      receivingWallet: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     flipCoin(
+      bet: PromiseOrValue<boolean>,
+      mode: PromiseOrValue<BigNumberish>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    getFlipPrice(overrides?: CallOverrides): Promise<[BigNumber]>;
+    getLastFlips(overrides?: CallOverrides): Promise<[FlipStructOutput[]]>;
 
-    initialize(
-      _tykheLuckyOracleAddress: PromiseOrValue<string>,
+    getSubscriptionDetails(
+      overrides?: CallOverrides
+    ): Promise<
+      [BigNumber, BigNumber, string, string[]] & {
+        balance: BigNumber;
+        reqCount: BigNumber;
+        owner: string;
+        consumers: string[];
+      }
+    >;
+
+    pendingRequestExists(overrides?: CallOverrides): Promise<[boolean]>;
+
+    rawFulfillRandomWords(
+      requestId: PromiseOrValue<BigNumberish>,
+      randomWords: PromiseOrValue<BigNumberish>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
+    removeConsumer(
+      consumerAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
+    requestRandomWords(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
+    s_randomWords(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    s_requestId(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    s_subscriptionId(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    topUpSubscription(
+      amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     usersFlips(
-      arg0: PromiseOrValue<string>,
+      arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
       [string, BigNumber, BigNumber, boolean] & {
@@ -142,21 +290,76 @@ export interface CoinFlip extends BaseContract {
         flipResult: boolean;
       }
     >;
+
+    withdraw(
+      amount: PromiseOrValue<BigNumberish>,
+      to: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
   };
 
+  addConsumer(
+    consumerAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  cancelSubscription(
+    receivingWallet: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   flipCoin(
+    bet: PromiseOrValue<boolean>,
+    mode: PromiseOrValue<BigNumberish>,
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  getFlipPrice(overrides?: CallOverrides): Promise<BigNumber>;
+  getLastFlips(overrides?: CallOverrides): Promise<FlipStructOutput[]>;
 
-  initialize(
-    _tykheLuckyOracleAddress: PromiseOrValue<string>,
+  getSubscriptionDetails(
+    overrides?: CallOverrides
+  ): Promise<
+    [BigNumber, BigNumber, string, string[]] & {
+      balance: BigNumber;
+      reqCount: BigNumber;
+      owner: string;
+      consumers: string[];
+    }
+  >;
+
+  pendingRequestExists(overrides?: CallOverrides): Promise<boolean>;
+
+  rawFulfillRandomWords(
+    requestId: PromiseOrValue<BigNumberish>,
+    randomWords: PromiseOrValue<BigNumberish>[],
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  removeConsumer(
+    consumerAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  requestRandomWords(
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  s_randomWords(
+    arg0: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  s_requestId(overrides?: CallOverrides): Promise<BigNumber>;
+
+  s_subscriptionId(overrides?: CallOverrides): Promise<BigNumber>;
+
+  topUpSubscription(
+    amount: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   usersFlips(
-    arg0: PromiseOrValue<string>,
+    arg0: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<
     [string, BigNumber, BigNumber, boolean] & {
@@ -167,18 +370,73 @@ export interface CoinFlip extends BaseContract {
     }
   >;
 
+  withdraw(
+    amount: PromiseOrValue<BigNumberish>,
+    to: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   callStatic: {
-    flipCoin(overrides?: CallOverrides): Promise<void>;
+    addConsumer(
+      consumerAddress: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
-    getFlipPrice(overrides?: CallOverrides): Promise<BigNumber>;
+    cancelSubscription(
+      receivingWallet: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
-    initialize(
-      _tykheLuckyOracleAddress: PromiseOrValue<string>,
+    flipCoin(
+      bet: PromiseOrValue<boolean>,
+      mode: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    getLastFlips(overrides?: CallOverrides): Promise<FlipStructOutput[]>;
+
+    getSubscriptionDetails(
+      overrides?: CallOverrides
+    ): Promise<
+      [BigNumber, BigNumber, string, string[]] & {
+        balance: BigNumber;
+        reqCount: BigNumber;
+        owner: string;
+        consumers: string[];
+      }
+    >;
+
+    pendingRequestExists(overrides?: CallOverrides): Promise<boolean>;
+
+    rawFulfillRandomWords(
+      requestId: PromiseOrValue<BigNumberish>,
+      randomWords: PromiseOrValue<BigNumberish>[],
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    removeConsumer(
+      consumerAddress: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    requestRandomWords(overrides?: CallOverrides): Promise<void>;
+
+    s_randomWords(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    s_requestId(overrides?: CallOverrides): Promise<BigNumber>;
+
+    s_subscriptionId(overrides?: CallOverrides): Promise<BigNumber>;
+
+    topUpSubscription(
+      amount: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
 
     usersFlips(
-      arg0: PromiseOrValue<string>,
+      arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
       [string, BigNumber, BigNumber, boolean] & {
@@ -188,55 +446,145 @@ export interface CoinFlip extends BaseContract {
         flipResult: boolean;
       }
     >;
+
+    withdraw(
+      amount: PromiseOrValue<BigNumberish>,
+      to: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
   };
 
-  filters: {
-    "Initialized(uint8)"(version?: null): InitializedEventFilter;
-    Initialized(version?: null): InitializedEventFilter;
-
-    "OwnershipTransferred(address,address)"(
-      previousOwner?: PromiseOrValue<string> | null,
-      newOwner?: PromiseOrValue<string> | null
-    ): OwnershipTransferredEventFilter;
-    OwnershipTransferred(
-      previousOwner?: PromiseOrValue<string> | null,
-      newOwner?: PromiseOrValue<string> | null
-    ): OwnershipTransferredEventFilter;
-  };
+  filters: {};
 
   estimateGas: {
+    addConsumer(
+      consumerAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    cancelSubscription(
+      receivingWallet: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     flipCoin(
+      bet: PromiseOrValue<boolean>,
+      mode: PromiseOrValue<BigNumberish>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    getFlipPrice(overrides?: CallOverrides): Promise<BigNumber>;
+    getLastFlips(overrides?: CallOverrides): Promise<BigNumber>;
 
-    initialize(
-      _tykheLuckyOracleAddress: PromiseOrValue<string>,
+    getSubscriptionDetails(overrides?: CallOverrides): Promise<BigNumber>;
+
+    pendingRequestExists(overrides?: CallOverrides): Promise<BigNumber>;
+
+    rawFulfillRandomWords(
+      requestId: PromiseOrValue<BigNumberish>,
+      randomWords: PromiseOrValue<BigNumberish>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    removeConsumer(
+      consumerAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    requestRandomWords(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    s_randomWords(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    s_requestId(overrides?: CallOverrides): Promise<BigNumber>;
+
+    s_subscriptionId(overrides?: CallOverrides): Promise<BigNumber>;
+
+    topUpSubscription(
+      amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     usersFlips(
-      arg0: PromiseOrValue<string>,
+      arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    withdraw(
+      amount: PromiseOrValue<BigNumberish>,
+      to: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
+    addConsumer(
+      consumerAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    cancelSubscription(
+      receivingWallet: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
     flipCoin(
+      bet: PromiseOrValue<boolean>,
+      mode: PromiseOrValue<BigNumberish>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    getFlipPrice(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getLastFlips(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    initialize(
-      _tykheLuckyOracleAddress: PromiseOrValue<string>,
+    getSubscriptionDetails(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    pendingRequestExists(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    rawFulfillRandomWords(
+      requestId: PromiseOrValue<BigNumberish>,
+      randomWords: PromiseOrValue<BigNumberish>[],
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    removeConsumer(
+      consumerAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    requestRandomWords(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    s_randomWords(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    s_requestId(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    s_subscriptionId(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    topUpSubscription(
+      amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     usersFlips(
-      arg0: PromiseOrValue<string>,
+      arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    withdraw(
+      amount: PromiseOrValue<BigNumberish>,
+      to: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
   };
 }

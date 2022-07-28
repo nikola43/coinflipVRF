@@ -25,9 +25,9 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.VRFConsumerBaseV2__factory>;
     getContractFactory(
-      name: "Initializable",
+      name: "IERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Initializable__factory>;
+    ): Promise<Contracts.IERC20__factory>;
     getContractFactory(
       name: "BEP20Token",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -112,14 +112,6 @@ declare module "hardhat/types/runtime" {
       name: "CoinFlip",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.CoinFlip__factory>;
-    getContractFactory(
-      name: "ITykheLuckyOracle",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ITykheLuckyOracle__factory>;
-    getContractFactory(
-      name: "TykheLuckyOracle",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.TykheLuckyOracle__factory>;
 
     getContractAt(
       name: "LinkTokenInterface",
@@ -137,10 +129,10 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.VRFConsumerBaseV2>;
     getContractAt(
-      name: "Initializable",
+      name: "IERC20",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.Initializable>;
+    ): Promise<Contracts.IERC20>;
     getContractAt(
       name: "BEP20Token",
       address: string,
@@ -246,16 +238,6 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.CoinFlip>;
-    getContractAt(
-      name: "ITykheLuckyOracle",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ITykheLuckyOracle>;
-    getContractAt(
-      name: "TykheLuckyOracle",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.TykheLuckyOracle>;
 
     // default types
     getContractFactory(

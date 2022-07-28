@@ -34,6 +34,7 @@ interface TykheLuckyOracleInterface extends ethers.utils.Interface {
     "s_randomWords(uint256)": FunctionFragment;
     "s_requestId()": FunctionFragment;
     "s_subscriptionId()": FunctionFragment;
+    "setSubscriptionId(uint64)": FunctionFragment;
     "topUpSubscription(uint256)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
     "withdraw(uint256,address)": FunctionFragment;
@@ -84,6 +85,10 @@ interface TykheLuckyOracleInterface extends ethers.utils.Interface {
   encodeFunctionData(
     functionFragment: "s_subscriptionId",
     values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setSubscriptionId",
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "topUpSubscription",
@@ -145,6 +150,10 @@ interface TykheLuckyOracleInterface extends ethers.utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "s_subscriptionId",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setSubscriptionId",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -269,6 +278,11 @@ export class TykheLuckyOracle extends BaseContract {
 
     s_subscriptionId(overrides?: CallOverrides): Promise<[BigNumber]>;
 
+    setSubscriptionId(
+      subscriptionId: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     topUpSubscription(
       amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -341,6 +355,11 @@ export class TykheLuckyOracle extends BaseContract {
 
   s_subscriptionId(overrides?: CallOverrides): Promise<BigNumber>;
 
+  setSubscriptionId(
+    subscriptionId: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   topUpSubscription(
     amount: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -408,6 +427,11 @@ export class TykheLuckyOracle extends BaseContract {
     s_requestId(overrides?: CallOverrides): Promise<BigNumber>;
 
     s_subscriptionId(overrides?: CallOverrides): Promise<BigNumber>;
+
+    setSubscriptionId(
+      subscriptionId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     topUpSubscription(
       amount: BigNumberish,
@@ -491,6 +515,11 @@ export class TykheLuckyOracle extends BaseContract {
 
     s_subscriptionId(overrides?: CallOverrides): Promise<BigNumber>;
 
+    setSubscriptionId(
+      subscriptionId: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     topUpSubscription(
       amount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -558,6 +587,11 @@ export class TykheLuckyOracle extends BaseContract {
     s_requestId(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     s_subscriptionId(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    setSubscriptionId(
+      subscriptionId: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
     topUpSubscription(
       amount: BigNumberish,

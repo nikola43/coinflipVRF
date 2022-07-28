@@ -10,11 +10,11 @@ import {
   Overrides,
 } from "ethers";
 import type { Provider, TransactionRequest } from "@ethersproject/providers";
-import type { PromiseOrValue } from "../../common";
+import type { PromiseOrValue } from "../../../common";
 import type {
   TykheLuckyOracle,
   TykheLuckyOracleInterface,
-} from "../../contracts/TykheLuckyOracle";
+} from "../../../contracts/TykheLuckyOracle.sol/TykheLuckyOracle";
 
 const _abi = [
   {

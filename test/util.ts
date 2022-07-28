@@ -54,7 +54,7 @@ export async function getProxyImplementation(proxyAddress: string): Promise<stri
     return await getImplementationAddress(provider, proxyAddress)
 }
 
-const verifyWithotDeploy = async (
+const verifyProxy = async (
     contractName: string,
     contract: Contract,
     autoVerify = true,
@@ -83,6 +83,21 @@ const verifyWithotDeploy = async (
         await verify(tokenImplementationAddress, args)
     }
 }
+
+const verifyNormal = async (
+    contractName: string,
+    contractAddress: string,
+    args: any = []
+) => {
+
+
+    await updateABI(contractName)
+
+    console.log('\nVerifing... ' + contractAddress)
+    await verify(contractAddress, args)
+
+}
+
 
 
 
@@ -495,7 +510,8 @@ export default module.exports = {
     chains,
     swapExactETHForTokens,
     swapExactTokensForTokensSupportingFeeOnTransferTokens,
-    verifyWithotDeploy,
+    verifyProxy,
     verify,
-    updateABI
+    updateABI,
+    verifyNormal,
 }

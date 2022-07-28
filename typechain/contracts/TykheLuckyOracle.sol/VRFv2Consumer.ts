@@ -21,9 +21,9 @@ import type {
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from "../common";
+} from "../../common";
 
-export interface TykheLuckyOracleInterface extends utils.Interface {
+export interface VRFv2ConsumerInterface extends utils.Interface {
   functions: {
     "rawFulfillRandomWords(uint256,uint256[])": FunctionFragment;
     "requestRandomWords()": FunctionFragment;
@@ -76,12 +76,12 @@ export interface TykheLuckyOracleInterface extends utils.Interface {
   events: {};
 }
 
-export interface TykheLuckyOracle extends BaseContract {
+export interface VRFv2Consumer extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: TykheLuckyOracleInterface;
+  interface: VRFv2ConsumerInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
