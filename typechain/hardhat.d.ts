@@ -112,6 +112,10 @@ declare module "hardhat/types/runtime" {
       name: "CoinFlip",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.CoinFlip__factory>;
+    getContractFactory(
+      name: "TykheLuckyOracle",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TykheLuckyOracle__factory>;
 
     getContractAt(
       name: "LinkTokenInterface",
@@ -238,6 +242,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.CoinFlip>;
+    getContractAt(
+      name: "TykheLuckyOracle",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TykheLuckyOracle>;
 
     // default types
     getContractFactory(

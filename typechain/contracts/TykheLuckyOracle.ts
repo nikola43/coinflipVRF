@@ -29,6 +29,7 @@ export interface TykheLuckyOracleInterface extends utils.Interface {
     "requestRandomWords()": FunctionFragment;
     "s_randomWords(uint256)": FunctionFragment;
     "s_requestId()": FunctionFragment;
+    "setSubscriptionId(uint64)": FunctionFragment;
   };
 
   getFunction(
@@ -37,6 +38,7 @@ export interface TykheLuckyOracleInterface extends utils.Interface {
       | "requestRandomWords"
       | "s_randomWords"
       | "s_requestId"
+      | "setSubscriptionId"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -55,6 +57,10 @@ export interface TykheLuckyOracleInterface extends utils.Interface {
     functionFragment: "s_requestId",
     values?: undefined
   ): string;
+  encodeFunctionData(
+    functionFragment: "setSubscriptionId",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
 
   decodeFunctionResult(
     functionFragment: "rawFulfillRandomWords",
@@ -70,6 +76,10 @@ export interface TykheLuckyOracleInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "s_requestId",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setSubscriptionId",
     data: BytesLike
   ): Result;
 
@@ -119,6 +129,11 @@ export interface TykheLuckyOracle extends BaseContract {
     ): Promise<[BigNumber]>;
 
     s_requestId(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    setSubscriptionId(
+      subscriptionId: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
   };
 
   rawFulfillRandomWords(
@@ -138,6 +153,11 @@ export interface TykheLuckyOracle extends BaseContract {
 
   s_requestId(overrides?: CallOverrides): Promise<BigNumber>;
 
+  setSubscriptionId(
+    subscriptionId: PromiseOrValue<BigNumberish>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   callStatic: {
     rawFulfillRandomWords(
       requestId: PromiseOrValue<BigNumberish>,
@@ -153,6 +173,11 @@ export interface TykheLuckyOracle extends BaseContract {
     ): Promise<BigNumber>;
 
     s_requestId(overrides?: CallOverrides): Promise<BigNumber>;
+
+    setSubscriptionId(
+      subscriptionId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
   };
 
   filters: {};
@@ -174,6 +199,11 @@ export interface TykheLuckyOracle extends BaseContract {
     ): Promise<BigNumber>;
 
     s_requestId(overrides?: CallOverrides): Promise<BigNumber>;
+
+    setSubscriptionId(
+      subscriptionId: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -193,5 +223,10 @@ export interface TykheLuckyOracle extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     s_requestId(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    setSubscriptionId(
+      subscriptionId: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
   };
 }

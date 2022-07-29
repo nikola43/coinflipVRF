@@ -3,3 +3,4 @@
 /* eslint-disable */
 export * as bscTestnetConnections from "./BSC Testnet Connections";
 export { CoinFlip__factory } from "./CoinFlip__factory";
+export { TykheLuckyOracle__factory } from "./TykheLuckyOracle__factory";

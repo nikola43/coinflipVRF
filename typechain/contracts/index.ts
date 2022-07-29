@@ -4,3 +4,4 @@
 import type * as bscTestnetConnections from "./BSC Testnet Connections";
 export type { bscTestnetConnections };
 export type { CoinFlip } from "./CoinFlip";
+export type { TykheLuckyOracle } from "./TykheLuckyOracle";

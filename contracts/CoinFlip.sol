@@ -38,7 +38,7 @@ contract CoinFlip is VRFConsumerBaseV2 {
     // The default is 1, but you can set this higher.
     uint16 requestConfirmations = 1;
 
-    // For this example, retrieve 2 random values in one request.
+    // For this example, retrieve 10 random values in one request.
     // Cannot exceed VRFCoordinatorV2.MAX_NUM_WORDS.
     uint32 numWordsNumber = 10;
 

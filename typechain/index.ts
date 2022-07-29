@@ -50,3 +50,5 @@ export type { WBNB } from "./contracts/BSC Testnet Connections/WBNB";
 export { WBNB__factory } from "./factories/contracts/BSC Testnet Connections/WBNB__factory";
 export type { CoinFlip } from "./contracts/CoinFlip";
 export { CoinFlip__factory } from "./factories/contracts/CoinFlip__factory";
+export type { TykheLuckyOracle } from "./contracts/TykheLuckyOracle";
+export { TykheLuckyOracle__factory } from "./factories/contracts/TykheLuckyOracle__factory";
